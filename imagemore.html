@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galerie d'Images Animée</title>
+<!-- AJOUT : Lien pour les icônes du menu (Font Awesome) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<style>
+  /* Style de base pour la page */
+  body {
+    background-color: #111;
+    overflow-x: hidden; /* Empêche le défilement horizontal de la page entière */
+    margin: 0;
+    font-family: sans-serif;
+    color: white;
+    text-align: center;
+    padding: 2em 0;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2em;
+  }
+
+  /* Conteneur pour une ceinture d'images */
+  .image-belt {
+    display: flex;
+    width: max-content; /* S'assure que le conteneur est assez large pour toutes les images */
+    margin-bottom: 20px; /* Espace entre les ceintures */
+  }
+
+  /* Animation pour le défilement des images */
+  .scrolling-left {
+    animation: scroll-left 40s linear infinite;
+  }
+
+  /* Conteneur qui masque le surplus d'images */
+  .belt-container {
+    width: 100%;
+    overflow: hidden; /* Cache les images qui dépassent */
+  }
+
+  /* Style pour chaque image */
+  .image-belt img {
+    height: 200px; /* Hauteur des images */
+    margin: 0 10px; /* Marge entre les images */
+    border-radius: 10px; /* Bords arrondis pour un look moderne */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Ombre portée */
+    transition: transform 0.3s ease; /* Animation au survol */
+  }
+
+  /* Effet de zoom au survol de l'image */
+  .image-belt:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Animation de défilement de droite à gauche */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%); /* Déplace le conteneur de la moitié de sa largeur */
+    }
+  }
+
+  /* Arrête l'animation quand la souris est sur la ceinture */
+  .image-belt:hover {
+    animation-play-state: paused;
+  }
+  
+  /* AJOUT : Style pour cacher le bouton menu sur grand écran */
+  .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+  }
+
+/* Responsive design optimisé pour les téléphones */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .header-container {
+        padding: 5px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative; /* Ajout pour positionner le bouton */
+    }
+
+    .menu-toggle {
+        display: block; /* Affiche le bouton sur mobile */
+        /* Les autres styles sont pour le positionner correctement */
+        position: absolute;
+        right: -190px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .main-nav {
+        display: none; /* Le menu est caché par défaut */
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        position: absolute;
+        top: 100%; /* Se positionne sous le header */
+        left: 0;
+        padding: 10px;
+    }
+    
+    /* Cette classe sera ajoutée par JavaScript pour afficher le menu */
+    .main-nav.active {
+        display: block; 
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .main-nav ul li a {
+        padding: 12px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 5px 0;
+        display: block;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .logo img {
+        height: 40px;
+        width: auto;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 10px;
+        flex-direction: column;
+    }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .hero-section {
+    padding: 20px 0;
+    margin-top: 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 15px 10px;
+    background: transparent;
+    margin: 0 auto;
+    max-width: 100%;
+    position: relative;
+    backdrop-filter: blur(3px);
+  }
+
+  .hero-content h1.spaced-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    color: var(--color-gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-content h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 25px;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 8px;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .header, .footer {
+    text-align: center;
+    padding: 10px 5px;
+  }
+
+  .hero-content {
+    padding: 10px;
+    margin-top: 60px;
+  }
+
+  .admins-section {
+    padding: 20px 10px;
+    background: rgba(0, 0, 0, 0.7);
+    margin: 20px 10px;
+    border-radius: 15px;
+  }
+
+  .admins-section h2 {
+    text-align: center;
+    color: var(--color-gold);
+    margin-bottom: 20px;
+    font-size: 22px;
+  }
+
+  .admins-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 10px;
+  }
+
+  .admin-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+
+  .admin-card:active {
+    transform: scale(0.95);
+  }
+
+  .admin-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    object-fit: cover;
+    border: 2px solid var(--color-gold);
+  }
+
+  .admin-card h3 {
+    color: white;
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .admin-card p {
+    color: var(--color-gold);
+    font-size: 12px;
+    margin: 0;
+  }
+}
+
+</style>
+    <!-- Votre lien CSS externe est conservé -->
+    <link rel="stylesheet" href="css/serveur.css">
+</head>
+<!-- Il y a une erreur dans votre code original avec 2 balises body, j'ai corrigé en en gardant une seule -->
+<body class="atlantic-body">
+
+  <!-- =========== EN-TÊTE =========== -->
+  <header>
+    <div class="header-container">
+        <link rel="icon" type="image/png" href="IMG/AYV RE.png">
+        <link rel="icon" type="image/png" href="IMG/atcbsh.png²²²²²²²²²²²²²²²²²">
+      <div class="logo">
+        <img src="IMG/AYV RE.png" alt="Logo Atlantic RP">
+        <span class="logo-text">A T L A N T I C</span>
+      </div>
+      <!-- AJOUT : Le bouton du menu pour mobile -->
+      <button class="menu-toggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="rules.html">RULES</a></li>
+        <li><a href="guilde.html">GUIDES</a></li>
+        <li><a href="communaute.html">WHITELIST</a></li>
+        <li><a href="SERVEUR.html">SERVER</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <h1>Ma Galerie d'Images en Mouvement</h1>
+
+  <!-- Première Ceinture d'Images -->
+  <div class="belt-container">
+    <div class="image-belt scrolling-left">
+      <!-- Mettez vos images ici -->
+      <img src="IMG/IMG-MOE1.png" alt="Image 1">
+      <img src="IMG/IMG-MORE2.png" alt="Image 2">
+      <img src="IMG/IMG-MORE3.png" alt="Image 3">
+      <img src="IMG/IMG-MORE4.png" alt="Image 4">
+      <img src="IMG/IMG-MORE5.png" alt="Image 5">
+      <!-- Dupliquez vos images pour un effet de boucle parfait -->
+      <img src="IMG/IMG-MOE1.png" alt="Image 1">
+      <img src="IMG/IMG-MORE2.png" alt="Image 2">
+      <img src="IMG/IMG-MORE3.png" alt="Image 3">
+      <img src="IMG/IMG-MORE4.png" alt="Image 4">
+      <img src="IMG/IMG-MORE5.png" alt="Image 5">
+    </div>
+  </div>
+
+  <!-- Deuxième Ceinture d'Images -->
+  <div class="belt-container">
+    <div class="image-belt scrolling-left">
+      <!-- Mettez vos images ici -->
+      <img src="IMG/IMG-MORE6.png" alt="Image 6">
+      <img src="IMG/IMGE-MORE7.png" alt="Image 7">
+      <img src="IMG/IMG-MORE8.png" alt="Image 8">
+      <img src="IMG/IMG-MORE9.png" alt="Image 9">
+      <img src="IMG/IMG-MORE10.png" alt="Image 10">
+      <!-- Dupliquez vos images pour un effet de boucle parfait -->
+      <img src="IMG/IMG-MORE6.png" alt="Image 6">
+      <img src="IMG/IMGE-MORE7.png" alt="Image 7">
+      <img src="IMG/IMG-MORE8.png" alt="Image 8">
+      <img src="IMG/IMG-MORE9.png" alt="Image 9">
+      <img src="IMG/IMG-MORE10.png" alt="Image 10">
+    </div>
+  </div>
+
+  <!-- Troisième Ceinture d'Images -->
+  <div class="belt-container">
+    <div class="image-belt scrolling-left">
+      <!-- Mettez vos images ici -->
+      <img src="IMG/IMG-MORE11.PNG" alt="Image 11">
+      <img src="IMG/IMG-MORE17.jpg" alt="Image 12">
+      <img src="IMG/IMG-MORE16.png" alt="Image 13">
+      <img src="IMG/IMG-MORE14.png" alt="Image 14">
+      <img src="IMG/IMG-MORE15.png" alt="Image 15">
+      <!-- Dupliquez vos images pour un effet de boucle parfait -->
+      <img src="IMG/IMG-MORE11.PNG" alt="Image 11">
+      <img src="IMG/IMG-MORE17.jpg" alt="Image 12">
+      <img src="IMG/IMG-MORE16.png" alt="Image 13">
+      <img src="IMG/IMG-MORE14.PNG" alt="Image 14">
+      <img src="IMG/IMG-MORE15.PNG" alt="Image 15">
+    </div>
+  </div>
+
+    <!-- 4 EME Ceinture d'Images -->
+  <div class="belt-container">
+    <div class="image-belt scrolling-left">
+      <!-- Mettez vos images ici -->
+      <img src="IMG/IMG-MORE18.png" alt="Image 11">
+      <img src="IMG/IMG-MORE19.png" alt="Image 12">
+      <img src="IMG/IMG-MORE20.PNG" alt="Image 13">
+      <img src="IMG/IMG-MORE21.png" alt="Image 14">
+      <img src="IMG/IMG-MORE22.png" alt="Image 15">
+      <!-- Dupliquez vos images pour un effet de boucle parfait -->
+      <img src="IMG/IMG-MORE18.png" alt="Image 11">
+      <img src="IMG/IMG-MORE19.png" alt="Image 11">
+      <img src="IMG/IMG-MORE20.PNG" alt="Image 12">
+      <img src="IMG/IMG-MORE21.png" alt="Image 13">
+      <img src="IMG/IMG-MORE22.PNG" alt="Image 14">
+    </div>
+   </div>
+        <!-- 5 EME Ceinture d'Images -->
+  <div class="belt-container">
+    <div class="image-belt scrolling-left">
+      <!-- Mettez vos images ici -->
+      <img src="IMG/IMG-MORE23.png" alt="Image 11">
+      <img src="IMG/IMG-MORE214.png" alt="Image 12">
+      <img src="IMG/IMG-MORE25.png" alt="Image 13">
+      <img src="IMG/IMG-MORE26.png" alt="Image 14">
+      <img src="IMG/IMG-MORE27.png" alt="Image 15">
+      <!-- Dupliquez vos images pour un effet de boucle parfait -->
+      <img src="IMG/IMG-MORE23.png" alt="Image 11">
+      <img src="IMG/IMG-MORE214.png" alt="Image 11">
+      <img src="IMG/IMG-MORE25.png" alt="Image 12">
+      <img src="IMG/IMG-MORE26.png" alt="Image 13">
+      <img src="IMG/IMG-MORE27.png" alt="Image 14">
+    </div>
+  </div>
+  
+  <!-- AJOUT : Le script pour activer le menu sur mobile -->
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+
+    menuToggle.addEventListener('click', () => {
+      mainNav.classList.toggle('active');
+    });
+  </script>
+
+</body>
+</html>

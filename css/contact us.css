@@ -1,0 +1,177 @@
+/* =========== SECTION STATISTIQUES =========== */
+.stats-section {
+    background-color: #1e1b24;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 60px 10%;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.stat-item h2 {
+    font-size: 60px;
+    font-weight: 900;
+    margin: 0;
+}
+
+.stat-item p {
+    font-size: 14px;
+    color: #2de793; /* Couleur verte */
+    margin: 5px 0 0 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* =========== SECTION CONTACT =========== */
+.contact-section {
+    background-color: #1e1b24;
+    padding: 100px 10%;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Pour cacher l'icône qui dépasse */
+}
+
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+.contact-content h2 {
+    font-size: 48px;
+    font-weight: 900;
+    display: inline-block; /* Pour que la bordure s'adapte à la taille du texte */
+    padding-right: 20px;
+    border-right: 4px solid #fff;
+    margin-bottom: 15px;
+}
+
+.contact-content p {
+    font-size: 14px;
+    color: #ccc;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
+}
+
+.contact-links a {
+    color: #fff;
+    font-weight: 700;
+    margin: 0 15px;
+    transition: color 0.2s;
+}
+.contact-links a:hover {
+    color: #2de793;
+}
+
+.contact-links a i {
+    margin-right: 8px;
+    color: #2de793;
+}
+.contact-links span {
+    color: #8839e1; /* Couleur violette pour le point */
+}
+
+/* Grande icône d'enveloppe en arrière-plan */
+.contact-bg-icon {
+    position: absolute;
+    right: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 400px;
+    color: rgba(255, 255, 255, 0.05); /* Icône très transparente */
+    z-index: 1;
+}
+
+/* =========== PIED DE PAGE (FOOTER) =========== */
+footer {
+    background-color: #16141a;
+    padding: 60px 10% 20px 10%;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; /* 3 colonnes de tailles différentes */
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #333;
+}
+
+footer h4 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer-about p {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li a {
+    color: #aaa;
+    font-size: 15px;
+    transition: color 0.2s;
+    display: inline-block;
+    padding: 5px 0;
+}
+.footer-links li a:hover {
+    color: #2de793;
+}
+.footer-links li a::before {
+    content: '■';
+    color: #2de793;
+    margin-right: 10px;
+}
+
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #2a2830;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 18px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+.social-icon:hover {
+    background-color: #2de793;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 14px;
+    color: #888;
+}
+
+/* =========== BOUTON "RETOUR EN HAUT" =========== */
+.scroll-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    background-color: #2de793;
+    border-radius: 50%;
+    z-index: 100;
+    /* Vous pouvez ajouter une icône de flèche ici si vous le souhaitez */
+    /* avec un ::before ou ::after pseudo-élément */
+}

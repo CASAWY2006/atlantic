@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@400;700;900&display=swap');
+
+/* === VARIABLES === */
+:root {
+  --gold: #d4af37;
+  --bright-gold: #ffd700;
+  --orange: #ff6b00;
+  --red: #ff3c00;
+  --green: #32cd32;
+  --purple: #4b0082;
+  --dark: #0f0f1f;
+  --bg: linear-gradient(to bottom, #0f0f1f, #4b0082, #ff3c00);
+}
+
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* === HEADER === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 2px solid var(--gold);
+  backdrop-filter: blur(8px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  height: 60px;
+  filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
+}
+
+.logo-text {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 26px;
+  background: linear-gradient(to right, red, orange, yellow, green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === NAVIGATION === */
+nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+nav a {
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 5px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(to right, var(--gold), var(--bright-gold));
+  transition: width 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--gold);
+  background: rgba(255, 215, 0, 0.1);
+}
+
+nav a:hover::before,
+nav a.active::before {
+  width: 100%;
+}
+

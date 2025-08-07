@@ -1,0 +1,45 @@
+.admins-section {
+  padding: 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.admins-section h2 {
+  color: #fff;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.admins-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.admin-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.admin-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+
+.admin-card h3 {
+  color: #fff;
+  margin: 0.5rem 0;
+}
+
+.admin-card p {
+  color: #ccc;
+  margin: 0;
+}

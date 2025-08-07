@@ -1,0 +1,554 @@
+
+/* ===== Reset & base ===== */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --color-gold: #D4AF37;
+  --color-light: #f1f1f1;
+}
+
+body {
+  margin: 0;
+  padding: 80px 0 0 0;
+  background: url('../IMG/backgr.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #eee;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+    h1 {
+      color: #00bcd4;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+
+    /* ===== Boutons de navigation ===== */
+    .button-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 30px;
+      max-width: 900px;
+      width: 100%;
+    }
+    .button-container button {
+      background-color: #333;
+      border: 2px solid transparent;
+      color: #ccc;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+      min-width: 130px;
+      text-align: center;
+      user-select: none;
+    }
+    .button-container button:hover {
+      background-color: #005f73;
+      color: #fff;
+    }
+    .button-container button.active {
+      background-color: #00bcd4;
+      border-color: #00bcd4;
+      color: #121212;
+      font-weight: 700;
+      cursor: default;
+      pointer-events: none;
+      box-shadow: 0 0 10px #00bcd4;
+    }
+
+    /* ===== Sections de contenu ===== */
+    .section {
+      display: none;
+      background-color: #222;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 188, 212, 0.4);
+      max-width: 900px;
+      width: 100%;
+      padding: 25px 30px;
+      line-height: 1.5;
+      color: #ddd;
+      font-size: 1rem;
+      user-select: text;
+    }
+    .section.active {
+      display: block;
+    }
+    .section h2 {
+      color: #d48a00;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-bottom: 2px solid #00bcd4;
+      padding-bottom: 8px;
+    }
+    .section h3 {
+      color: #ffb703;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .section p {
+      margin-bottom: 15px;
+      white-space: pre-line;
+    }
+    /* Texte bilingue */
+    .bilingual {
+      margin-top: 8px;
+      font-style: italic;
+      color: #9e9e9e;
+      font-size: 0.9rem;
+      white-space: pre-line;
+    }
+
+    /* Scroll bar pour les sections si besoin */
+    .section {
+      max-height: 75vh;
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #00bcd4 #222;
+    }
+    .section::-webkit-scrollbar {
+      width: 8px;
+    }
+    .section::-webkit-scrollbar-track {
+      background: #222;
+      border-radius: 10px;
+    }
+    .section::-webkit-scrollbar-thumb {
+      background-color: #00bcd4;
+      border-radius: 10px;
+      border: 2px solid #222;
+    }
+  @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@400;700;900&display=swap');
+
+/* === VARIABLES === */
+:root {
+  --gold: #d4af37;
+  --bright-gold: #ffd700;
+  --orange: #ff6b00;
+  --red: #ff3c00;
+  --green: #32cd32;
+  --purple: #4b0082;
+  --dark: #0f0f1f;
+  --bg: linear-gradient(to bottom, #0f0f1f, #4b0082, #ff3c00);
+}
+
+/* === RESET === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+background: url('IMG/backgr.jpeg') ;
+}
+
+/* === HEADER === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.85);
+  border-bottom: 2px solid var(--gold);
+  backdrop-filter: blur(8px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  height: 60px;
+  filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
+}
+
+.logo-text {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 26px;
+  background: linear-gradient(to right, red, orange, yellow, green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* === NAVIGATION === */
+nav ul {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+nav a {
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 5px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background: linear-gradient(to right, var(--gold), var(--bright-gold));
+  transition: width 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--gold);
+  background: rgba(255, 215, 0, 0.1);
+}
+
+nav a:hover::before,
+nav a.active::before {
+  width: 100%;
+}
+
+/* === HERO SECTION === */
+.hero-section {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url('IMGG/backgr.jpeg') center/cover no-repeat;
+  position: relative; 
+}
+
+.hero-section::before {
+    content: none !important;
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 15, 31, 0.6);
+  backdrop-filter: blur(5px);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.hero-content h1.spaced-title {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 72px;
+  letter-spacing: 10px;
+  background: linear-gradient(to right, red, orange, yellow, green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
+  animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+  from { filter: drop-shadow(0 0 10px var(--gold)); }
+  to { filter: drop-shadow(0 0 20px var(--bright-gold)); }
+}
+
+.hero-content p {
+  font-size: 18px;
+  margin: 20px 0;
+  color: #eee;
+  opacity: 0.9;
+  transition: opacity 0.5s ease;
+}
+
+/* === NOUVEAUX BOUTONS PROFESSIONNELS === */
+.hero-buttons {
+  margin-top: 30px;
+}
+
+.hero-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.hero-buttons .btn:hover {
+  transform: translateY(-3px);
+}
+
+/* ===== BOUTON DISCORD ===== */
+.btn-discord {
+  background: linear-gradient(to right, #5865F2, #404EED);
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
+}
+
+.btn-discord:hover {
+  background: linear-gradient(to right, #404EED, #5865F2);
+  box-shadow: 0 0 15px rgba(242, 155, 88, 0.6);
+}
+
+/* ===== BOUTON CONNECT ===== */
+.btn-connect {
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.btn-connect:hover {
+  background-color: var(--gold);
+  color: #000;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .hero-content h1.spaced-title {
+    font-size: 42px;
+    letter-spacing: 5px;
+  }
+
+  .logo-text {
+    font-size: 20px;
+  }
+
+  nav ul {
+    gap: 15px;
+  }
+
+  .hero-buttons .btn {
+    margin-top: 10px;
+    display: block;
+    width: 80%;
+  }
+}
+/* === TEXTE ANIMÉ CHANGEMENT === */
+#changing-text {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  margin-top: 20px;
+  opacity: 0.9;
+  transition: color 0.5s ease;
+  min-height: 80px;
+}
+
+/* === BOUTONS === */
+.hero-buttons {
+  margin-top: 30px;
+}
+
+.hero-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: #1a1a1a;
+  color: #fff;
+}
+
+.hero-buttons .btn:hover {
+  transform: translateY(-3px);
+}
+.animated-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-top: 20px;
+  animation: fadeInOut 5s ease-in-out infinite;
+  /* text-shadow pour lisibilité */
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0; }
+  10%, 90% { opacity: 1; }
+}
+.admins-section {
+  background-color: #111; /* sombre pour bien différencier */
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.admins-section h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.admins-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.admin-card {
+  background-color: #222;
+  border-radius: 12px;
+  width: 220px; /* largeur augmentée */
+  padding: 25px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.admin-card:hover {
+  transform: scale(1.05);
+}
+
+.admin-card img {
+  width: 160px;  /* taille agrandie */
+  height: 160px; /* taille agrandie */
+  object-fit: cover;
+  border-radius: 50%; /* cercle parfait */
+  margin-bottom: 15px;
+  border: 3px solid #ff3c00; /* couleur orange */
+}
+
+.admin-info h3 {
+  margin: 0;
+  font-size: 22px; /* texte un peu plus grand */
+  font-weight: 700;
+}
+
+.admin-info p {
+  margin: 5px 0 0 0;
+  font-size: 18px;
+  color: #ffd700; /* jaune */
+  font-weight: 600;
+}
+
+.admins-section {
+      padding-bottom: 140px; /* pour laisser de la place sous le contenu */
+  background-color: #111; /* sombre pour bien différencier */
+  color: #fff;
+  padding: 40px 20px;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+
+  position: fixed;      /* Fixe la section */
+  bottom: 0;            /* Collée en bas */
+  left: 0;              /* Alignée à gauche */
+  width: 100%;          /* Sur toute la largeur */
+  z-index: 1100;        /* Au-dessus des autres éléments */
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.7);
+}
+/* FOND GÉNÉRAL */
+body {
+  margin: 0;
+  padding: 0;
+  background: url('IMG/backgr.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+/* TITRES & TEXTE GÉNÉRAL */
+h1, h2, h3, p, li, span, strong {
+  color: white;
+}
+
+/* SECTIONS DE RÈGLES */
+.section {
+  display: none;
+  padding: 20px 40px;
+  margin-bottom: 60px;
+}
+
+.section.active {
+  display: block;
+}
+
+/* BOUTONS DE NAVIGATION */
+.button-container {
+  text-align: center;
+  margin: 20px 0;
+}
+.button-container button {
+  margin: 0 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  border: none;
+  background-color: #222;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.button-container button.active {
+  background-color: #0d6efd;
+}
+
+/* SECTION ADMINS */
+.admins-section {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 50px 20px;
+  margin-top: 100px;
+  text-align: center;
+}
+.admins-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 30px;
+}
+.admin-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 15px;
+  width: 160px;
+  text-align: center;
+}
+.admin-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+.admin-info h3,
+.admin-info p {
+  margin: 5px 0;
+  color: white;
+}

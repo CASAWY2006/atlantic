@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="IMG/AYV RE.png">
+    <title>ATLANTIC | Serveur RP Marocain</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/transitions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /* CSS Intégré */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+        :root {
+            --primary-color: #ffc107; /* Jaune/Or */
+            --secondary-color: #e63946; /* Rouge */
+            --dark-bg: #1a1a2e; /* Fond sombre principal */
+            --card-bg: #16213e; /* Fond des cartes */
+            --text-color: #e0e0e0;
+            --text-light: #f1f1f1;
+            --color-gold: #ffc107;
+            --color-light: #f1f1f1;
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        html, body {
+    margin: 0;
+    padding: 80px 0 0 0;
+    min-height: 100vh;
+    background-color: #020220;
+    background-image:
+        linear-gradient(120deg, rgba(0,123,255,0.10) 0%, transparent 100%),
+        radial-gradient(circle at 20% 10%, rgba(0, 123, 255, 0.25) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(0, 123, 255, 0.18) 0%, transparent 70%),
+        url('IMG/looatcma.jpg');
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto 60px auto;
+            padding: 0 30px;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-gold);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        @media screen and (max-width: 768px) {
+            body {
+                font-size: 14px;
+                padding: 0;
+                overflow-x: hidden;
+            }
+
+            .header-container {
+                padding: 5px 15px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .main-nav {
+                display: none;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+            }
+
+            .main-nav.active {
+                display: block;
+            }
+
+            .main-nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                padding: 10px;
+                display: none;
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                padding: 10px;
+                margin: 0;
+            }
+
+            .main-nav ul li a {
+                padding: 12px;
+                border-radius: 5px;
+                background: rgba(255, 255, 255, 0.1);
+                margin: 5px 0;
+                display: block;
+            }
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(22, 33, 62, 0.9);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo span {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, .btn-join:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-join {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-join:hover {
+            background-color: #d02a37;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: url('/img/background-hero.jpg') no-repeat center center/cover; /* Remplacer par votre image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px; /* Hauteur du header */
+            position: relative;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, var(--dark-bg) 5%, rgba(0,0,0,0.6) 100%);
+        }
+
+        .hero-content {
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-logo {
+            width: 300px;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons .btn {
+            margin: 0 10px;
+            padding: 15px 30px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+        }
+        
+        /* Sections générales */
+        .section {
+            padding: 100px 0 100px 0;
+            margin-bottom: 80px;
+            margin-top: 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-top: -80px; /* Pour remonter sur le hero */
+            position: relative;
+            z-index: 3;
+        }
+        
+        .stat-item {
+            background-color: var(--card-bg);
+            padding: 40px 25px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 10px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .stat-item:hover {
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+            transform: translateY(-6px) scale(1.03);
+        }
+        
+        .stat-item .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-item .label {
+            font-size: 1rem;
+            color: var(--text-color);
+        }
+
+        /* Video Section */
+        .video-container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 70px auto;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, rgba(0,123,255,0.18) 0%, rgba(22,33,62,0.95) 100%);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0,123,255,0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .custom-video-frame {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            background: linear-gradient(120deg, rgba(0,123,255,0.10) 0%, transparent 100%);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px 0 rgba(0,123,255,0.10);
+            position: relative;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background-color: var(--card-bg);
+            padding: 45px 35px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .feature-item:hover {
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+            transform: translateY(-6px) scale(1.03);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+        
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .gallery-item {
+            aspect-ratio: 16 / 10;
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .gallery-item:hover {
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+            transform: translateY(-6px) scale(1.03);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .gallery-item:hover .overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-item .overlay h4 {
+            font-size: 1.2rem;
+        }
+        
+        .text-center {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+        }
+        
+        .btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 6px 18px 0 rgba(0,0,0,0.16);
+        }
+
+        /* Rules Section */
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .rule-card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 10px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .rule-card:hover {
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+            transform: translateY(-6px) scale(1.03);
+        }
+        
+        .rule-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 10px;
+        }
+        
+        .rule-card ul {
+            list-style: none;
+        }
+        
+        .rule-card ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .rule-card ul li::before {
+            content: '✓';
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* News & Events */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .news-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.12);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .news-card:hover {
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+            transform: translateY(-6px) scale(1.03);
+        }
+        
+        .news-card-img {
+            height: 200px;
+            background-color: #333;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .news-card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card-content .date {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .news-card-content h3 {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        .news-card-content p {
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .news-card-content .btn-read-more {
+            background: var(--secondary-color);
+            color: white;
+            align-self: flex-start;
+        }
+
+        /* Footer */
+footer {
+    background: linear-gradient(120deg, #16213e 60%, #0a1a3c 100%);
+    padding: 80px 0 40px 0;
+    border-top: 3px solid var(--primary-color);
+    box-shadow: 0 -8px 32px 0 rgba(0,123,255,0.10);
+    position: relative;
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 60px;
+    margin-bottom: 60px;
+}
+.footer-col h4 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.footer-col p, .footer-col ul li {
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.footer-col ul {
+    list-style: none;
+    padding-left: 0;
+}
+.footer-col ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s, background 0.3s;
+    padding: 6px 0;
+    border-radius: 6px;
+}
+.footer-col ul li a:hover {
+    color: var(--primary-color);
+    background: rgba(255,255,255,0.04);
+}
+.footer-col ul li span.icon-placeholder {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    margin-right: 2px;
+    /* Ajoute ici ton icône SVG ou FontAwesome */
+}
+.footer-col h4 span.icon-placeholder {
+    width: 26px;
+    height: 26px;
+}
+.footer-col p span.icon-placeholder {
+    width: 22px;
+    height: 22px;
+}
+.social-icons a {
+    display: inline-block;
+    color: var(--primary-color);
+    font-size: 1.7rem;
+    margin-right: 18px;
+    transition: color 0.3s, transform 0.2s;
+}
+.social-icons a:hover {
+    color: #ffd966;
+    transform: scale(1.15);
+}
+.footer-bottom {
+    text-align: center;
+    padding-top: 28px;
+    border-top: 1.5px solid rgba(255,255,255,0.12);
+    font-size: 1rem;
+    color: var(--text-light);
+    opacity: 0.85;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    background-color: #020220; /* couleur de fond continue après l’image */
+    
+    background-image:
+        linear-gradient(to bottom, rgba(0,0,0,0) 80%, #111 100%),
+        url('IMG/looatcma.jpg');
+
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+        .language-switcher {
+    position: relative;
+    display: inline-block;
+}
+.btn-lang {
+    background: var(--primary-color);
+    color: var(--dark-bg);
+    border: none;
+    padding: 10px 22px;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px 0 rgba(0,123,255,0.10);
+    transition: background 0.2s;
+}
+.btn-lang:hover {
+    background: #ffd966;
+}
+.lang-menu {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.12);
+    list-style: none;
+    margin: 0;
+    padding: 8px 0;
+    min-width: 140px;
+    z-index: 1001;
+}
+.lang-menu li a {
+    display: block;
+    padding: 10px 18px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: background 0.2s, color 0.2s;
+}
+.lang-menu li a:hover {
+    background: var(--primary-color);
+    color: var(--dark-bg);
+}
+    </style>
+    <link rel="stylesheet" href="css/serveur.css">
+</head>
+<body>
+
+  <!-- =========== EN-TÊTE =========== -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="IMG/atcbsh.png" alt="Logo Atlantic RP">
+        <span class="logo-text">A T L A N T I C</span>
+      </div>
+      <button class="menu-toggle" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="rules.html">RULES</a></li>
+        <li><a href="guilde.html">GUIDES</a></li>
+        <li><a href="communaute.html">WHITELIST</a></li>
+        <li><a href="SERVEUR.html" class="active">SERVER</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+    <main>
+        <!-- ==================== HERO ==================== -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <img src="img/atcbsh.png" alt="Atlantic RP Logo" class="hero-logo">
+                <h1 data-translate="The Ultimate Roleplay Server">The Ultimate Roleplay Server</h1>
+                <p data-translate="Dive into the world of Los Santos with Atlantic RP. Create your story, live your dreams, and explore a unique Moroccan gaming community.">Dive into the world of Los Santos with Atlantic RP. Create your story, live your dreams, and explore a unique Moroccan gaming community.</p>
+                <div class="hero-buttons">
+                    <a href="rules.html" class="btn btn-primary" data-translate="Join the Server">SEE THE RULES 🚫</a><br><br>
+                    <a href="#discover" class="btn btn-secondary" data-translate="Watch the Trailer">Watch the Trailer 📢</a>
+                </div>
+            </div>
+        </section><br><br><br><br><br>
+
+        <!-- ==================== STATS ==================== -->
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="number">129</div>
+                    <div class="label" data-translate="Average Active Players per Day">Average Active Players per Day</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">14,553</div>
+                    <div class="label" data-translate="Members">Members</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">15</div>
+                    <div class="label" data-translate="Events/Week">Events/Week</div>
+                </div>
+                <div class="stat-item">
+                    <div class="number">24/7</div>
+                    <div class="label" data-translate="Online">Online</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== DISCOVER ==================== -->
+        <section class="section" id="discover">
+            <div class="container">
+               
+                <h2 class="section-title" data-translate="Discover  A T L A N T I C rp">Discover <span class="logo-text">A T L A N T I C</span> <span class="logo-text">rp</span></h2>
+                <p class="section-subtitle" data-translate="Dive into our world through this exclusive trailer that showcases everything Atlantic RP has to offer.">Dive into our world through this exclusive trailer that showcases everything Atlantic RP has to offer.</p>
+                
+                <div class="video-container">
+                    <div class="custom-video-frame">
+                        <a href="https://www.youtube.com/@moroccanrp/videos" target="_blank" rel="noopener noreferrer" class="video-thumbnail">
+                            <img src="IMG/willatc.jpeg" alt="Atlantic RP Trailer" style="width: 100%; height: 100%; object-fit: cover; border-radius: 18px; cursor: pointer;">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <style>
+                    .video-thumbnail {
+                        position: relative;
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                    }
+                    .play-button {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 80px;
+                        height: 80px;
+                        background: rgba(0, 0, 0, 0.7);
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all 0.3s ease;
+                    }
+                    .play-button i {
+                        color: white;
+                        font-size: 30px;
+                        margin-left: 5px;
+                    }
+                    .video-thumbnail:hover .play-button {
+                        background: rgba(255, 0, 0, 0.8);
+                        transform: translate(-50%, -50%) scale(1.1);
+                    }
+                </style>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <h3 data-translate="Active Community">Active Community</h3>
+                        <p data-translate="Over 2,000 passionate roleplay players.">Over 2,000 passionate roleplay players.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h3 data-translate="Custom Map">Custom Map</h3>
+                        <p data-translate="Los Santos enhanced with unique additions.">Los Santos enhanced with unique additions.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3 data-translate="Regular Events">Regular Events</h3>
+                        <p data-translate="Activities and contests every week.">Activities and contests every week.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== GALLERY ==================== -->
+        <section class="section" id="gallery">
+            <div class="container">
+                <h2 class="section-title" data-translate="Galerie du Serveur">Galerie du Serveur</h2>
+                <h2 class="section-title" data-translate="Server Gallery">Server Gallery</h2>
+                <p class="section-subtitle" data-translate="Discover the highlights, events, and unique atmosphere of Atlantic RP through our gallery.">Discover the highlights, events, and unique atmosphere of Atlantic RP through our gallery.</p>
+                <div class="gallery-grid">
+                    <!-- Remplacer les 'background-image' par les chemins de vos images -->
+                    <div class="gallery-item" style="background-image: url('img/lux.png');">
+                        <div class="overlay"><h4>Luxury Vehicles</h4></div>
+                    </div>
+                    <div class="gallery-item" style="background-image: url('img/rp.png');">
+                        <div class="overlay"><h4>Roleplay Scenes</h4></div>
+                    </div>
+                    <div class="gallery-item" style="background-image: url('img/mission.png');">
+                        <div class="overlay"><h4>Missions and Scenarios</h4></div>
+                    </div>
+                    <div class="gallery-item" style="background-image: url('img/paysag.png');">
+                        <div class="overlay"><h4>Unique Landscapes</h4></div>
+                    </div>
+                    <div class="gallery-item" style="background-image: url('img/ev.png');">
+                        <div class="overlay"><h4>Community Events</h4></div>
+                    </div>
+                    <div class="gallery-item" style="background-image: url('img/willatc.jpeg');">
+                        <div class="overlay"><h4>Moroccan Inspiration</h4></div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <a href="imagemore.html" class="btn btn-secondary">See More Images</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== RÈGLES DU SERVEUR ==================== -->
+<section class="section" id="rules">
+    <div class="container">
+        <h2 class="section-title" data-translate="Règles du Serveur">Règles du Serveur</h2>
+        <h2 class="section-title" data-translate="Server Rules">Server Rules</h2>
+        <p class="section-subtitle" data-translate="To ensure the best gaming experience for everyone, here are the essential rules of Atlantic RP.">To ensure the best gaming experience for everyone, here are the essential rules of Atlantic RP.</p>
+        <div class="rules-grid">
+            <div class="rule-card">
+                <h3 style="display:flex;align-items:center;gap:10px;color:var(--primary-color);"><span class="footer-icon"><img src="img/comportement.png" alt="Comportement" style="width:28px;height:28px;"></span>Comportement</h3>
+                <ul>
+                    <li data-translate="Respect all players and staff.">Respect all players and staff.</li>
+                    <li data-translate="No harassment or discrimination.">No harassment or discrimination.</li>
+                    <li data-translate="Use appropriate language.">Use appropriate language.</li>
+                    <li data-translate="Keep roleplay realistic.">Keep roleplay realistic.</li>
+                </ul>
+            </div>
+            <div class="rule-card">
+                <h3 style="display:flex;align-items:center;gap:10px;color:var(--primary-color);"><span class="footer-icon"><img src="img/icons8-gameplay-64.png" alt="Gameplay" style="width:28px;height:28px;"></span>Gameplay</h3>
+                <ul>
+                    <li data-translate="No cheating or unauthorized modding.">No cheating or unauthorized modding.</li>
+                    <li data-translate="Respect roleplay zones.">Respect roleplay zones.</li>
+                    <li data-translate="Follow ongoing scenarios.">Follow ongoing scenarios.</li>
+                    <li data-translate="No random killing (RDM).">No random killing (RDM).</li>
+                </ul>
+            </div>
+            <div class="rule-card">
+                <h3 style="display:flex;align-items:center;gap:10px;color:var(--primary-color);"><span class="footer-icon"><img src="img/icons8-contact-64.png" alt="Communication" style="width:28px;height:28px;"></span>Communication</h3>
+                <ul>
+                    <li data-translate="Use voice chat appropriately.">Use voice chat appropriately.</li>
+                    <li data-translate="No spamming in chat.">No spamming in chat.</li>
+                    <li data-translate="Stay in character (IC).">Stay in character (IC).</li>
+                    <li data-translate="Use OOC sparingly.">Use OOC sparingly.</li>
+                </ul>
+            </div>
+            <div class="rule-card">
+                <h3 style="display:flex;align-items:center;gap:10px;color:var(--primary-color);"><span class="footer-icon"><img src="img/icons8-error-50.png" alt="Sanctions" style="width:28px;height:28px;"></span>Sanctions</h3>
+                <ul>
+                    <li data-translate="Warning: 1st offense">Warning: 1st offense</li>
+                    <li data-translate="Temporary kick: 2nd offense">Temporary kick: 2nd offense</li>
+                    <li data-translate="24h ban: 3rd offense">24h ban: 3rd offense</li>
+                    <li data-translate="Permanent ban: Serious offenses">Permanent ban: Serious offenses</li>
+                </ul>
+            </div>
+        </div>
+       <div class="text-center">
+    <a href="autre/Whitelist-Rules-or-Regles-de-la-Whitelist.pdf" class="btn btn-primary" download data-translate="Télécharger le Règlement Complet">
+        Download Full Rules
+    </a>
+</div>
+
+    </div>
+</section>
+
+        <!-- ==================== NEWS & EVENTS ==================== -->
+        <section class="section" id="news">
+            <div class="container">
+                <h2 class="section-title" data-translate="Actualités & Événements">Actualités & Événements</h2>
+                <h2 class="section-title" data-translate="News & Events">News & Events</h2>
+                <p class="section-subtitle" data-translate="Stay informed about the latest news, updates, and special events on Atlantic RP.">Stay informed about the latest news, updates, and special events on Atlantic RP.</p>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <!-- Remplacer par le chemin de votre image -->
+                        <div class="news-card-img" style="background-image: url('img/OPTIMIZ.jpeg');"></div>
+                        <div class="news-card-content">
+                            <span class="date">25 JANVIER 2025</span>
+                            <h3 data-translate="Major Update - Version 3">Major Update - Version 3</h3>
+                            <p data-translate="Discover new features, vehicles, and gameplay improvements.">Discover new features, vehicles, and gameplay improvements.</p>
+                            <a href="autre/Atlantic-RP-LEvolution-du-Serveur-GTA-RP-Marocain.pdf" class="btn btn-read-more" data-translate="Read More →">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-card-img" style="background-image: url('img/eventsp.png');"></div>
+                        <div class="news-card-content">
+                            <span class="date">20 JANVIER 2025</span>
+                            <h3 data-translate="Special Event: Ramadan Festival">Special Event: Ramadan Festival</h3>
+                            <p data-translate="Celebrate the holy month with exclusive events and unique rewards.">Celebrate the holy month with exclusive events and unique rewards.</p>
+                            <a href="autre/Evenements-Speciaux-sur-le-Serveur-GTA-RP-Maroc-ATLANTIC.pdf" class="btn btn-read-more" data-translate="Read More →">Read More →</a>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-card-img" style="background-image: url('IMG/TAXIRP.jpeg');"></div>
+                        <div class="news-card-content">
+                            <span class="date">15 JANVIER 2025</span>
+                            <h3 data-translate="New Jobs: Police and Firefighters">New Jobs: Police and Firefighters</h3>
+                            <p data-translate="Join law enforcement or emergency services with new roles.">Join law enforcement or emergency services with new roles.</p>
+                            <a href="autre/Presentation-dAtlantic-RP-Maroc-Nouveaux-Metiers-et-Systemes.pdf" class="btn btn-read-more" data-translate="Read More →">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                      <div class="logo">
+      <img src="IMG/loo-removebg-preview.png" alt="Logo Atlantic RP">
+       <span class="logo-text">A T L A N T I C rp</span>
+      </div>
+                   
+                    <p data-translate="Le serveur de roleplay GTA V le plus immersif du Maroc. Rejoignez une communauté passionnée et vivez des aventures uniques à Los Santos.">Le serveur de roleplay GTA V le plus immersif du Maroc. Rejoignez une communauté passionnée et vivez des aventures uniques à Los Santos.</p>
+                    <p data-translate="The most immersive GTA V roleplay server in Morocco. Join a passionate community and experience unique adventures in Los Santos.">The most immersive GTA V roleplay server in Morocco. Join a passionate community and experience unique adventures in Los Santos.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 data-translate="Navigation"><span class="footer-icon"><img src="img/icons8-navigation-80.png" alt="email" style="width:20px;height:20px;"></span>Navigation</h4>
+                    <ul>
+                        <li><a href="#hero"><span class="footer-icon"><img src="img/icons8-home-24.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Home">Home</span></a></li>
+                        <li><a href="#discover"><span class="footer-icon"><img src="img/icons8-video-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Intro Video">Intro Video</span></a></li>
+                        <li><a href="#gallery"><span class="footer-icon"><img src="img/icons8-gallery-64.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Gallery">Gallery</span></a></li>
+                        <li><a href="#rules"><span class="footer-icon"><img src="img/icons8-rules-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Server Rules">Server Rules</span></a></li>
+                        <li><a href="#news"><span class="footer-icon"><img src="img/icons8-google-news-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="News">News</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-translate="Communauté"><span class="footer-icon"><img src="img/icons8-crowd-48.png" alt="email" style="width:20px;height:20px;"></span>Communauté</h4>
+                     <ul>
+                        <li><a href="https://discord.com/invite/atlantic-roleplay-492135997342220318"><span class="footer-icon"><img src="img/icons8-discord-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Discord Server">Discord Server</span></a></li>
+                        <li><a href="index.html"><span class="footer-icon"><img src="img/icons8-online-support-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Support & Help">Support & Help</span></a></li>
+                        <li><a href="guilde.html"><span class="footer-icon"><img src="img/icons8-about-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Beginner's Guide">Beginner's Guide</span></a></li>
+                        <li><a href="#"><span class="footer-icon"><img src="img/icons8-faq-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="FAQ">FAQ</span></a></li>
+                        <li><a href="https://discord.com/invite/atlantic-roleplay-492135997342220318"><span class="footer-icon"><img src="img/icons8-staff-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Staff Applications">Staff Applications</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-translate="Contact"><span class="footer-icon"><img src="img/icons8-contact-64.png" alt="email" style="width:20px;height:20px;"></span>Contact</h4>
+                    <p><span class="footer-icon"><img src="img/icons8-server-64.png" alt="email" style="width:20px;height:20px;"></span> Server based in Morocco</p>
+                    <p><span class="footer-icon"><img src="img/icons8-email-50.png" alt="email" style="width:20px;height:20px;"></span>✉️ Email: contact@atlanticrp.ma</p>
+                    <p><span class="footer-icon"><img src="img/icons8-cctv-64.png" alt="email" style="width:20px;height:20px;"></span>🔌 IP: connect/7zq6gv</p>
+                    <div class="social-icons">
+                         <!-- Remplacez '#' par vos vrais liens -->
+                        <a href="https://discord.com/invite/atlantic-roleplay-492135997342220318"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@moroccanrp"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@atlanticrpv3?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Atlantic RP. All rights reserved. ・ Made with ❤️ for the Moroccan community.</p>
+                 <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Atlantic RP is not affiliated with Rockstar Games or Take-Two Interactive. Grand Theft Auto and GTA are trademarks of Take-Two Interactive Software Inc.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome pour les icônes (facultatif mais recommandé) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth scrolling pour les liens de navigation
+            const navLinks = document.querySelectorAll('nav a[href^="#"], .hero-buttons a[href^="#"], .btn-join[href^="#"]');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let targetId = this.getAttribute('href');
+                    let targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Calcule la position de l'élément cible en tenant compte de la hauteur du header fixe
+                        const headerOffset = 70; // Hauteur approximative du header
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // Effet d'apparition au défilement (optionnel, pour un peu de dynamisme)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(section);
+            });
+            
+            const cards = document.querySelectorAll('.stat-item, .feature-item, .rule-card, .news-card');
+             cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                observer.observe(card);
+            });
+
+        });
+    </script>
+
+
+
+    <!-- Menu hamburger -->
+    <script>
+      const menuToggle = document.querySelector('.menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      
+      menuToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+        menuToggle.innerHTML = mainNav.classList.contains('active') ? 
+          '<i class="fas fa-times"></i>' : 
+          '<i class="fas fa-bars"></i>';
+      });
+
+      // Fermer le menu lors du clic sur un lien
+      const navLinks = document.querySelectorAll('.main-nav a');
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mainNav.classList.remove('active');
+          menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+      });
+    </script>
+
+    <!-- Ajoute data-translate sur les éléments à traduire dans le HTML -->
+    <!-- Exemple : <h1 data-translate="Le Serveur de Roleplay Ultime">Le Serveur de Roleplay Ultime</h1> -->
+</body>
+</html>

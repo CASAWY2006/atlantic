@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="img" href="IMG/AYV RE.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/rules.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/transitions.css">
+  <title>Beginner's Guide - Atlantic RP</title>
+
+  <style>
+    :root {
+      --color-gold: #D4AF37;
+      --color-light: #f1f1f1;
+    }
+    
+    body {
+      margin: 0;
+      padding-top: 80px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: #f1f1f1;
+      line-height: 1.6;
+    }
+
+    .guide-container {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    h1, h2 {
+      color: #00d4ff;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    section {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #00d4ff66;
+    }
+
+    ul, table {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    table th, table td {
+      border: 1px solid #00d4ff44;
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #00d4ff22;
+      color: #ffffff;
+    }
+
+    strong {
+      color: #ffe600;
+    }
+
+    em {
+      color: #ccc;
+      font-style: italic;
+    }
+
+    @media screen and (max-width: 600px) {
+      .guide-container {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+    }
+    /* Responsive menu */
+.toggle-menu {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .toggle-menu {
+    display: block;
+      position: absolute;
+  top: 1rem;
+  right: 1rem;
+  /* Garde les autres styles déjà définis */
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  z-index: 1100; /* pour être sûr qu'il soit au-dessus */
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: #111; /* même couleur que le header */
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  nav {
+    width: 100%;
+  }
+}
+
+.logo-text {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 26px; /* taille par défaut */
+  background: linear-gradient(to right, red, orange, yellow, green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Réduction de la taille sur petits écrans */
+@media (max-width: 768px) {
+  .logo-text {
+    font-size: 18px; /* plus petit pour mobiles */
+  }
+}
+
+  </style>
+</head>
+<body>
+     <!-- =========== HEADER AND NAVIGATION =========== -->
+<header>
+  <div class="logo">
+    <img src="IMG/atcbsh.png" alt="Logo Atlantic RP">
+    <span class="logo-text">A T L A N T I C</span>
+  </div>
+
+  <button class="toggle-menu" aria-label="Menu">&#9776;</button>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="rules.html">RULES</a></li>
+      <li><a href="guilde.html" class="active">GUIDES</a></li>
+      <li><a href="communaute.html">WHITELIST</a></li>
+      <li><a href="SERVEUR.html">SERVER</a></li>
+      <li><a href="about.html">ABOUT US</a></li>
+    </ul>
+  </nav>
+
+ 
+</header>
+ <br><br>
+  <main class="guide-container">
+    <h1>🎓 Beginner's RP Guide – Atlantic RP</h1>
+
+    <section>
+      <h2>👋 Welcome to Atlantic RP</h2>
+      <p>You've just arrived on an RP server, and you don't know where to start? Don't panic! Here's everything you need to know to play correctly, respect the rules, and fully enjoy the Atlantic RP experience.</p>
+    </section>
+
+    <section>
+      <h2>1. ⚙️ What is RP?</h2>
+      <p>RP (RolePlay) comes from "Role Play" = <strong>playing a role</strong>. In Atlantic RP, you embody a fictional character in a virtual city. You live their life, you talk, you react, and you make decisions <strong>as if you were really them</strong>.</p>
+      <ul>
+        <li>✅ You do <strong>not play yourself</strong></li>
+        <li>❌ You never say "I'll be right back, I have bugs" or "I'm crashing IRL" in-game</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>2. 👤 Creating your character</h2>
+      <p>Before playing, imagine a story for your character:</p>
+      <ul>
+        <li>His name, surname</li>
+        <li>His age</li>
+        <li>His past (poor, rich, former military, reformed thief, etc.)</li>
+        <li>His personality (calm, nervous, talkative, discreet…)</li>
+      </ul>
+      <p><strong>Important:</strong> no unrealistic nicknames. Use a <strong>realistic first and last name</strong>.</p>
+    </section>
+
+    <section>
+      <h2>3. 🧠 Basic rules to follow</h2>
+      <table>
+        <thead>
+          <tr><th>Code</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🔴 No Fear RP</td><td>Be afraid of dying like IRL.</td></tr>
+          <tr><td>🔴 No Fail RP</td><td>No impossible or unrealistic actions.</td></tr>
+          <tr><td>🔴 No Power Gaming</td><td>No abuse of mechanics to win.</td></tr>
+          <tr><td>🔴 No Meta Gaming</td><td>No use of out-of-character information.</td></tr>
+          <tr><td>🔴 No Free Kill</td><td>No murder without a clear RP reason.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>4. 💬 How to talk in RP?</h2>
+      <p>In-game, everything you say is experienced by your character.</p>
+      <ul>
+        <li><strong>/me</strong> → Character action: <em>/me looks around</em></li>
+        <li><strong>/do</strong> → Description: <em>/do A strong smell of cannabis</em></li>
+        <li><strong>/twt</strong> → Post an RP tweet</li>
+        <li><strong>/911</strong> → Call the police</li>
+        <li><strong>/ems</strong> → Call for help</li>
+      </ul>
+      <p>❗ Never speak OOC in voice. Use <strong>/ooc</strong> if needed.</p>
+    </section>
+
+    <section>
+      <h2>5. 🚔 Jobs and opportunities</h2>
+      <p>Atlantic RP offers a rich universe:</p>
+      <ul>
+        <li>👮‍♂️ Police</li>
+        <li>🚑 EMS</li>
+        <li>🔧 Mechanic</li>
+        <li>🍔 Restaurateur</li>
+        <li>🚚 Driver</li>
+        <li>👤 Gang / Mafia</li>
+        <li>💼 Entrepreneur</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. 🔒 A semi-whitelisted server</h2>
+      <ul>
+        <li>✅ Active anti-cheat</li>
+        <li>✅ Constant monitoring</li>
+        <li>✅ Serious community</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>7. ✨ Tips for getting started</h2>
+      <ul>
+        <li>Observe veteran players</li>
+        <li>Avoid provocations or insults</li>
+        <li>Speak naturally</li>
+        <li>Develop your character logically</li>
+        <li>Ask questions if you're lost</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>8. 📌 Sanctions</h2>
+      <ul>
+        <li>⚠️ Warning</li>
+        <li>⛔ Kick or temporary ban</li>
+        <li>🚫 Permanent ban if rules are not followed</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>🎉 Conclusion</h2>
+      <p>Atlantic RP is not just a game. It's a <strong>complete RP experience</strong>. We ask for maturity, creativity, and respect towards other players.</p>
+      <p><strong>Are you ready? Create your story and make it live. Welcome to Atlantic RP.</strong></p>
+    </section>
+  </main>
+ 
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector('.toggle-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    toggleBtn.addEventListener('click', function () {
+      navLinks.classList.toggle('active');
+    });
+  });
+</script>
+
+
+</body>
+</html>

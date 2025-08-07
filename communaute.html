@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="IMG/AYV RE.png">
+    <title>Atlantic GTA RP - Serveur Marocain</title>
+    
+    <!-- Intégration de Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/transitions.css">
+
+    <style>
+        /* --- Réinitialisation et Paramètres Globaux --- */
+        :root {
+            --dark-blue: #0D1117;
+            --medium-blue: #161B22;
+            --light-blue: #007BFF;
+            --accent-glow: rgba(0, 123, 255, 0.5);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --border-color: #30363D;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--dark-blue);
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- Animations au défilement --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- En-tête --- */
+   
+    :root {
+      --light-blue: #007bff;
+      --accent-glow: rgba(0, 123, 255, 0.4);
+      --text-secondary: #666;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Section Héros *//* Section Héros */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 6rem 2rem 4rem; /* ajoute de l'espace sous la navbar */
+  min-height: 80vh;
+  background-color: transparent;
+}
+
+.hero-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-title span {
+  color: var(--light-blue);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.cta-button {
+  display: inline-block;
+  background: var(--light-blue);
+  color: white;
+  padding: 1rem 2.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.hero-image {
+  flex: 1;
+  min-width: 300px;
+  max-width: 550px;
+  width: 100%;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 5rem 1rem 2rem;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin: 1rem auto 2rem;
+  }
+
+  .cta-button {
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+  }
+
+  .hero-content, .hero-image {
+    width: 100%;
+  }
+
+  .hero-image {
+    max-width: 100%;
+  }
+}
+
+    body {
+  background-color: #0d1117; /* Bleu foncé / gris foncé */
+  color: #ffffff;
+}
+
+        /* --- Sections de Contenu --- */
+        .content-section {
+            padding: 5rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title span {
+            color: var(--light-blue);
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .step-card {
+            background: var(--medium-blue);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .step-card .icon {
+            margin-bottom: 1.5rem;
+            color: var(--light-blue);
+            width: 50px;
+            height: 50px;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* --- Section Whitelist avec images --- */
+        .whitelist-card {
+            background: var(--medium-blue);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .whitelist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .whitelist-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .whitelist-card-content {
+            padding: 2rem;
+        }
+        
+        .whitelist-card-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .whitelist-card-content p {
+            color: var(--text-secondary);
+        }
+
+        /* --- Pied de page --- */
+        .footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            background: var(--medium-blue);
+        }
+        
+        .footer h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer p {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                min-height: auto;
+            }
+            
+            .hero-content, .hero-image {
+                flex: none;
+                width: 100%;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo img {
+  height: 60px;
+  filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
+}
+
+.logo-text {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 26px;
+  background: linear-gradient(to right, red, orange, yellow, green);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.top-nav {
+  background-color: var(--medium-blue);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1rem 2rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--light-blue);
+  transition: width 0.3s;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 100%;
+}
+
+.language a {
+  color: var(--text-secondary);
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .logo {
+    justify-content: center;
+  }
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 1.2rem;
+    right: 2rem;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--medium-blue);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-container {
+    position: relative;
+  }
+}
+
+
+
+    </style>
+   
+</head>
+<body>
+  <!-- =========== EN-TÊTE =========== -->
+  <header class="top-nav">
+  <div class="container nav-container">
+    <div class="logo">
+      <img src="IMG/atcbsh.png" alt="Logo Atlantic RP">
+      <span class="logo-text">A T L A N T I C</span>
+    </div>
+
+    <div class="menu-toggle" id="mobile-menu">
+      ☰
+    </div>
+
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="rules.html">RULES</a></li>
+        <li><a href="guilde.html">GUIDES</a></li>
+        <li><a href="communaute.html" class="active">WHITELIST</a></li>
+        <li><a href="SERVEUR.html">SERVER</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+
+    <!-- Section Héros -->
+    <header class="hero container">
+        <div class="hero-content fade-in-section">
+            <p class="hero-subtitle">Discover how to join Atlantic, one of the largest Moroccan GTA RP servers, step by step.</p>
+            <a href="index.html" class="cta-button">Start your adventure</a>
+        </div>
+        <div class="hero-image fade-in-section">
+            <img src="img/willatc.jpeg" alt="Personnages de GTA V devant des voitures de sport">
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Étape 1: Prérequis -->
+        <section id="etape1" class="content-section container fade-in-section">
+            <h2 class="section-title">Step 1: <span>Essential Requirements</span></h2>
+            <div class="grid-container">
+                <div class="step-card">
+                    <div class="icon">
+                        <!-- Icône SVG pour Steam/Epic -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12.15.03c-2.02.19-3.69.87-5.02 2.1-1.35 1.26-2.09 2.94-2.12 4.96-.03 2.45.86 4.35 2.5 5.67l-2.4 6.75a.9.9 0 00.32.99c.32.2.73.1 1.01-.16l5-4.22c.39.06.78.09 1.17.09 2.05-.03 3.73-.72 5.06-2.01 1.36-1.32 2.09-3.03 2.1-5.09.01-2.45-.88-4.36-2.55-5.69-1.58-1.25-3.53-1.92-5.9-2.09l-.12-.01zm-.24 2.1c3.33.02 6.03 2.7 6.03 6.09s-2.7 6.08-6.03 6.08-6.03-2.7-6.03-6.08c0-3.38 2.7-6.09 6.03-6.09zM8.7 5.8a1.64 1.64 0 100 3.28 1.64 1.64 0 000-3.28zm6.54 3.74c-.5.44-1.12.7-1.8.7-.93 0-1.7-.42-2.16-1.1l-2.6 2.19a.9.9 0 00.17 1.25c.3.3.75.35 1.08.1l3.5-2.93a2.9 2.9 0 001.81-.21z"/></svg>
+                    </div>
+                    <h3>Install Steam or Epic Games</h3>
+                    <p>To start your GTA RP adventure, you first need a gaming platform. Install Steam or Epic Games on your computer.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon">
+                        <!-- Icône SVG pour GTA V -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19.1 4.9C15.2 1 8.8 1 4.9 4.9S1 15.2 4.9 19.1 15.2 23 19.1 19.1 23 8.8 19.1 4.9zM12 20c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm-1-14h2v2h-2v-2zm0 4h2v8h-2v-8z"/></svg>
+                    </div>
+                    <h3>Purchase GTA V</h3>
+                    <p>GTA V is the base game required to play GTA RP. Make sure you have purchased and installed it via Steam or Epic Games.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon">
+                        <!-- Icône SVG Calendrier -->
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 002 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+                    </div>
+                    <h3>Age Requirement: 22 Years</h3>
+                    <p>Our Atlantic server has a strict age requirement: you must be at least 22 years old to join us.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Étape 2: Préparation -->
+        <section id="etape2" class="content-section container fade-in-section">
+            <h2 class="section-title">Step 2: <span>Preparing for Roleplay</span></h2>
+            <div class="grid-container">
+                <div class="step-card">
+                    <div class="icon">
+                        <!-- Icône SVG Téléchargement -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    </div>
+                    <h3>Install FiveM</h3>
+                    <p>FiveM is the multiplayer mod that allows you to play GTA RP. Download and install FiveM from its official website.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon">
+                        <!-- Icône SVG Discord -->
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20.3,3.7C18.8,2.7,17.1,2,15.2,1.6c-0.2,0.5-0.4,1.1-0.6,1.7c-1.6-0.4-3.2-0.4-4.8,0C9.6,2.7,9.4,2.1,9.2,1.6 C7.3,2,5.6,2.7,4.1,3.7C1.4,7.8,0.8,11.8,1.4,15.7c1.7,1.4,3.5,2.5,5.5,3.3c0.4-0.6,0.8-1.2,1.1-1.9c-0.7-0.3-1.4-0.7-2-1.1 c-0.2-1.3-0.2-2.6,0.1-3.9c0.2-0.2,0.3-0.3,0.4-0.3c3.4,0,6.7,1.6,6.7,1.6s0.2,0.1,0.3,0.2c0.3,1.3,0.3,2.6,0.1,3.9 c-0.6,0.4-1.3,0.8-2,1.1c0.3,0.7,0.7,1.3,1.1,1.9c2-0.8,3.8-1.9,5.5-3.3C23.6,11.8,23,7.8,20.3,3.7z M8.6,13.2 c-0.9,0-1.6-0.8-1.6-1.8s0.7-1.8,1.6-1.8s1.6,0.8,1.6,1.8S9.5,13.2,8.6,13.2z M15.8,13.2c-0.9,0-1.6-0.8-1.6-1.8s0.7-1.8,1.6-1.8 s1.6,0.8,1.6,1.8S16.7,13.2,15.8,13.2z"/></svg>
+                    </div>
+                    <h3>Join our Discord server</h3>
+                    <p>Once FiveM is installed, join the Atlantic Discord server. This is where all communications and onboarding processes take place.</p>
+                </div>
+                <div class="step-card">
+                    <div class="icon">
+                         <!-- Icône SVG Micro barré -->
+                         <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1.2-9.1c0-.66.54-1.2 1.2-1.2s1.2.54 1.2 1.2l-.01 6.2c0 .66-.53 1.2-1.19 1.2s-1.2-.54-1.2-1.2V4.9zm6.5 6.1c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.49 6-3.31 6-6.72h-1.7z"/><path fill-rule="evenodd" d="M2.5 4.5l19 15-1.5 1.5-19-15z"/></svg>
+                    </div>
+                    <h3>Voice Changer Prohibited</h3>
+                    <p>To maintain an authentic roleplay experience, the use of voice changers is strictly prohibited on our server.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Étape 3: Whitelist -->
+        <section id="etape3" class="content-section container fade-in-section">
+            <h2 class="section-title">Step 3: <span>The Whitelist Process</span></h2>
+            <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                <div class="whitelist-card">
+                    <img src="IMG/recdis.jpg" alt="Entretien en visioconférence pour la whitelist">
+                    <div class="whitelist-card-content">
+                        <h3>The Whitelist Interview</h3>
+                        <p>After joining our Discord, you will need to complete a "whitelist interview." This is a discussion to assess your understanding of roleplay and the server rules.</p>
+                    </div>
+                </div>
+                <div class="whitelist-card">
+                    <img src="IMG/txAdmin.png" alt="Liste de validation avec des coches vertes">
+                    <div class="whitelist-card-content">
+                        <h3>Whitelist on our Server</h3>
+                        <p>If you pass the interview, you will be added to the whitelist on our server. This will give you access to the game and the Atlantic community.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Étape 4: Intégrité et Immersion -->
+        <section id="etape4" class="content-section container fade-in-section">
+            <h2 class="section-title">Step 4: <span>Integrity and Immersion</span></h2>
+             <div class="grid-container" style="grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));">
+                <div class="whitelist-card">
+                     <div class="whitelist-card-content">
+                        <img src="IMG/anticheat.jpg" alt="Vérification Anti-Triche">
+                        <h3>Anti-Cheat Verification</h3>
+                        <p>We perform a quick check to ensure that players are not using cheats. Game integrity is essential for a fair and immersive experience.</p>
+                    </div>
+                </div>
+                <div class="whitelist-card">
+                    <div class="whitelist-card-content">
+                        <img src="IMG/atcma.jpg" alt="">
+                        <h3>Atlantic: The Moroccan GTA RP</h3>
+                        <p>Atlantic is proud to be one of the largest Moroccan GTA RP servers, offering a unique experience and a dynamic community. Join us for total immersion in Moroccan roleplay.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="footer fade-in-section">
+        <div class="container">
+            <h2>Welcome to Atlantic</h2>
+            <p>Your new home in the world of GTA RP!</p>
+        </div>
+    </footer>
+
+    <script src="js/transitions.js"></script>
+    <script>
+        // --- Script pour les animations au défilement ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.fade-in-section');
+
+            const observerOptions = {
+                root: null, // observe par rapport au viewport
+                rootMargin: '0px',
+                threshold: 0.1 // se déclenche quand 10% de l'élément est visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    // Si l'élément entre dans le viewport
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optionnel: arrêter d'observer l'élément une fois qu'il est visible
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observer chaque section
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+<script>
+  const menuToggle = document.getElementById("mobile-menu");
+  const navLinks = document.getElementById("nav-links");
+
+  menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("show");
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const toggleBtn = document.querySelector('.toggle-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    toggleBtn.addEventListener('click', function () {
+      navLinks.classList.toggle('active');
+    });
+  });
+</script>
+
+
+<!-- Traduction anglaise du contenu affiché à l'utilisateur -->
+</body>
+</html>
