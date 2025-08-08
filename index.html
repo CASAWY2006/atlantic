@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="icon" type="image/png" href="IMG/AYV RE.png">
   <meta charset="UTF-8">
   <!-- ÉCRIS ICI TES MOTS-CLÉS POUR LE RÉFÉRENCEMENT SEO, séparés par des virgules -->
   <!-- Exemple : <meta name="keywords" content="GTA, RP, Maroc, FiveM, Atlantic, serveur, roleplay, marocain"> -->
@@ -22,6 +23,149 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: linear-gradient(90deg, #181818 60%, #232323 100%);
+      color: #f1f1f1;
+      padding: 48px 0 0 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin-top: 48px;
+      box-shadow: 0 -2px 24px rgba(0,0,0,0.18);
+    }
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 48px;
+      margin-bottom: 32px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .footer-col {
+      flex: 1 1 240px;
+      min-width: 220px;
+      margin-bottom: 24px;
+      background: rgba(255,255,255,0.01);
+      border-radius: 12px;
+      padding: 0 8px;
+    }
+    .footer-col h4 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #e6c55a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+    .footer-col p, .footer-col ul li {
+      font-size: 16px;
+      color: #e0e0e0;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    .footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      color: #e6c55a;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+    .footer-col ul li a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+    .footer-col ul li span.icon-placeholder {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .footer-col h4 span.icon-placeholder {
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+    }
+    .footer-col p span.icon-placeholder {
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+    }
+    .footer-bottom {
+      border-top: 1.5px solid #333;
+      padding: 22px 0 12px 0;
+      text-align: center;
+      font-size: 16px;
+      color: #bdbdbd;
+      background: rgba(0,0,0,0.08);
+      border-radius: 0 0 12px 12px;
+    }
+    .footer-bottom p {
+      margin: 0 0 10px 0;
+      color: #bdbdbd;
+    }
+    .footer-col .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .footer-col .logo img {
+      width: 54px;
+      height: 54px;
+      border-radius: 12px;
+      background: #fff;
+      object-fit: contain;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .footer-col .logo-text {
+      font-size: 24px;
+      color: #e6c55a;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.08);
+    }
+    .social-icons {
+      margin-top: 12px;
+      display: flex;
+      gap: 18px;
+    }
+    .social-icons a {
+      color: #e6c55a;
+      font-size: 26px;
+      transition: color 0.2s, transform 0.2s;
+      border-radius: 50%;
+      padding: 6px;
+      background: rgba(255,255,255,0.04);
+    }
+    .social-icons a:hover {
+      color: #fff;
+      background: #e6c55a;
+      transform: scale(1.15);
+    }
+    @media screen and (max-width: 900px) {
+      .footer-grid {
+        flex-direction: column;
+        gap: 0;
+      }
+      .footer-col {
+        margin-bottom: 32px;
+      }
+    }
 
     /* Styles communs (desktop et mobile) */
 
@@ -661,7 +805,7 @@ html, body {
       <div class="admin-card"><img src="IMG/fazel.png"><h3>FAZEL</h3>      <p>Head-staff</p></div>
       <div class="admin-card"><img src="IMG/kabo.png"><h3>KABO</h3>        <p>Moderateur</p></div>
       <div class="admin-card"><img src="IMG/DEMITRI.png"><h3>DEMITRI</h3>  <p>Moderateur</p></div>  
-      <div class="admin-card"><img src="IMG/jilali.png"><h3>JILALI</h3>    <p>Moderateur</p></div>
+      <div class="admin-card"><img src="IMG/jilali.png"><h3>JALALI</h3>    <p>Moderateur</p></div>
       <div class="admin-card"><img src="IMG/JUNIOR.png"><h3>JUNIOR</h3>    <p>Moderateur</p></div>
       <div class="admin-card"><img src="IMG/KRIMI.png"><h3>KRIMI</h3>      <p>PC CHEAKER</p></div>
       <div class="admin-card"><img src="IMG/worst.png"><h3>WORST</h3>      <p>Staff</p></div>
@@ -810,4 +954,47 @@ html, body {
     });
   </script>
 </body>
+    <!-- ==================== FOOTER ==================== -->
+    <footer id="footer">
+        <div class="container">
+        <div class="container" style="max-width:1200px;margin:auto;">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="IMG/loo-removebg-preview.png" alt="Logo Atlantic RP">
+                        <span class="logo-text">A T L A N T I C rp</span>
+                    </div>
+                    <p data-translate="Le serveur de roleplay GTA V le plus immersif du Maroc. Rejoignez une communauté passionnée et vivez des aventures uniques à Los Santos.">Le serveur de roleplay GTA V le plus immersif du Maroc. Rejoignez une communauté passionnée et vivez des aventures uniques à Los Santos.</p>
+                    <p data-translate="The most immersive GTA V roleplay server in Morocco. Join a passionate community and experience unique adventures in Los Santos.">The most immersive GTA V roleplay server in Morocco. Join a passionate community and experience unique adventures in Los Santos.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h4 data-translate="Communauté"><span class="footer-icon"><img src="img/icons8-crowd-48.png" alt="email" style="width:20px;height:20px;"></span>Communauté</h4>
+                     <ul>
+                        <li><a href="https://discord.com/invite/atlantic-roleplay-492135997342220318"><span class="footer-icon"><img src="img/icons8-discord-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Discord Server">Discord Server</span></a></li>
+                        <li><a href="TICKET SYS/LOGIN.PHP"><span class="footer-icon"><img src="img/icons8-online-support-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Support & Help">Support & Help</span></a></li>
+                        <li><a href="guilde.html"><span class="footer-icon"><img src="img/icons8-about-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Beginner's Guide">Beginner's Guide</span></a></li>
+                        <li><a href="#"><span class="footer-icon"><img src="img/icons8-faq-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="FAQ">FAQ</span></a></li>
+                        <li><a href="https://discord.com/invite/atlantic-roleplay-492135997342220318"><span class="footer-icon"><img src="img/icons8-staff-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Staff Applications">Staff Applications</span></a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 data-translate="Contact"><span class="footer-icon"><img src="img/icons8-contact-64.png" alt="email" style="width:20px;height:20px;"></span>Contact</h4>
+                    <p><span class="footer-icon"><img src="img/icons8-server-64.png" alt="email" style="width:20px;height:20px;"></span> Server based in Morocco</p>
+                    <p><span class="footer-icon"><img src="img/icons8-email-50.png" alt="email" style="width:20px;height:20px;"></span>✉️ Email: contact@atlanticrp.ma</p>
+                    <p><span class="footer-icon"><img src="img/icons8-cctv-64.png" alt="email" style="width:20px;height:20px;"></span>🔌 IP: connect/7zq6gv</p>
+                    <div class="social-icons">
+                        <a href="https://discord.com/invite/atlantic-roleplay-492135997342220318"><i class="fab fa-discord"></i></a>
+                        <a href="https://www.youtube.com/@moroccanrp"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@atlanticrpv3?is_from_webapp=1&sender_device=pc"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 Atlantic RP. All rights reserved. ・ Made with ❤️ for the Moroccan community.</p>
+                  <p style="font-size: 0.8rem; opacity: 0.7; margin-top: 10px;">Atlantic RP is not affiliated with Rockstar Games or Take-Two Interactive. Grand Theft Auto and GTA are trademarks of Take-Two Interactive Software Inc.</p>
+            </div>
+      
+    </footer>
+
 </html>
