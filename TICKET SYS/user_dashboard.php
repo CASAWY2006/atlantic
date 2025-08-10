@@ -1,311 +1,383 @@
 <?php
-// Fichier : user_dashboard.php
 session_start();
 require_once 'config.php';
 
-// Protection de la page : si l'utilisateur n'est pas connecté, on le renvoie vers le login
-if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'utilisateur') {
+// Protection accès utilisateur
+if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'utilisateur') {
     header('Location: login.php');
     exit();
 }
 
 $user_id = $_SESSION['user_id'];
 
-// Logique pour créer un nouveau ticket
+// Traitement création ticket
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_ticket'])) {
-    $titre = trim($_POST['titre']);
-    $message = trim($_POST['message']);
+    $titre = trim($_POST['titre'] ?? '');
+    $message = trim($_POST['message'] ?? '');
 
-    // Vérifier le dernier ticket envoyé par cet utilisateur
+    // Vérifier la date du dernier ticket créé par l'utilisateur
     $stmt = $pdo->prepare("SELECT date_creation FROM tickets WHERE id_utilisateur = ? ORDER BY date_creation DESC LIMIT 1");
     $stmt->execute([$user_id]);
     $last_ticket = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    $can_send = true;
+    $can_create = true;
     if ($last_ticket) {
         $last_time = strtotime($last_ticket['date_creation']);
         $now = time();
-        $diff_hours = ($now - $last_time) / 3600;
-        if ($diff_hours < 15) {
-            $can_send = false;
+        if (($now - $last_time) < 3 * 3600) {
+            $can_create = false;
         }
     }
 
-    if (!$can_send) {
-        $remaining = 15 - $diff_hours;
-        $hours = floor($remaining);
-        $minutes = floor(($remaining - $hours) * 60);
-        // Ne pas afficher d'alerte, juste le minuteur visuel dans le formulaire
-    } elseif (!empty($titre) && !empty($message)) {
-        $stmt = $pdo->prepare("INSERT INTO tickets (id_utilisateur, titre, message) VALUES (?, ?, ?)");
+    if (!$can_create) {
+        $error_message = "Vous devez attendre 3 heures entre chaque création de ticket.";
+        // Calculer le temps restant en secondes
+        $time_left = 3 * 3600 - ($now - $last_time);
+        $show_timer = true;
+    } elseif ($titre !== '' && $message !== '') {
+        $stmt = $pdo->prepare("INSERT INTO tickets (id_utilisateur, titre, message, statut, date_creation) VALUES (?, ?, ?, 'Ouvert', NOW())");
         $stmt->execute([$user_id, $titre, $message]);
-        $_SESSION['success_message'] = "Ticket créé avec succès !";
-        header('Location: user_dashboard.php');
-        exit();
+        $success_message = "Ticket créé avec succès !";
+    } else {
+        $error_message = "Veuillez remplir tous les champs.";
     }
 }
 
-// Récupérer les tickets de l'utilisateur
+// Récupérer les infos utilisateur (username + image)
+$stmt = $pdo->prepare("SELECT username, profile_image FROM utilisateurs WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Récupérer tickets de l'utilisateur (avec réponses éventuelles)
 $stmt = $pdo->prepare("SELECT * FROM tickets WHERE id_utilisateur = ? ORDER BY date_creation DESC");
 $stmt->execute([$user_id]);
 $tickets = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="icon" type="image/png" href="IMG/AYV RE.png">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="../IMG/AYV RE.png">
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Mon Tableau de Bord</title>
     <style>
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: url('../IMG/ATCMARP.PNG') no-repeat center center fixed;
-    background-size: cover;
-    margin: 0;
-    min-height: 100vh;
-    position: relative;
-}
-body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 0;
-}
-        .container {
-            background: #fff;
-            padding: 2rem 1.5rem;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
-            max-width: 600px;
-            margin: 2.5rem auto;
+        body {
+            background: url('img/ATCMARP.png') no-repeat center center fixed;
+            background-size: cover;
         }
-        .header {
+        /* Reset & basics */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9fafc;
+            color: #2c3e50;
+            margin: 0; padding: 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Navbar */
+        header {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
+        }
+        header .left, header .right {
+            display: flex;
+            align-items: center;
+        }
+        header .left a, header .right a {
+            margin-left: 20px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        header .left a:hover, header .right a:hover {
+            color: #1abc9c;
+        }
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #1abc9c;
+            margin-right: 10px;
+        }
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
         }
         h1 {
-            color: #2d3a4a;
-            font-size: 2rem;
             font-weight: 700;
-            margin: 0;
+            margin-bottom: 30px;
+            color: #34495e;
         }
-        h2 {
-            text-align: left;
-            color: #4a90e2;
-            font-size: 1.3rem;
+        /* Formulaire */
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+        form h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #34495e;
+        }
+        label {
+            display: block;
             font-weight: 600;
-            margin-bottom: 1.2rem;
-            border-bottom: 1px solid #eaeaea;
-            padding-bottom: 0.5rem;
-        }
-        .form-container, .tickets-container {
-            background: #f7f8fa;
-            padding: 1.2rem;
-            margin-bottom: 1.5rem;
-        <form action="logout.php" method="get" style="margin:0;">
-            <button type="submit" class="logout-btn">Déconnexion</button>
-        </form>
-            font-weight: 500;
+            margin-bottom: 8px;
+            color: #34495e;
         }
         input[type="text"], textarea {
             width: 100%;
-            padding: 0.7rem;
-            margin-bottom: 0.7rem;
-            border: 1px solid #dbe6ec;
-            border-radius: 4px;
-            box-sizing: border-box;
-            background: #fff;
-            color: #2d3a4a;
-            font-weight: 400;
+            padding: 12px 15px;
             font-size: 1rem;
-            transition: border-color 0.2s;
+            border-radius: 8px;
+            border: 1px solid #bdc3c7;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+            resize: vertical;
         }
         input[type="text"]:focus, textarea:focus {
-            border-color: #4a90e2;
+            border-color: #1abc9c;
             outline: none;
         }
-        button {
-            background-color: #fd0202ff;
-            color: #fff;
-            padding: 0.7rem 1.2rem;
+        button[type="submit"] {
+            background-color: #1abc9c;
             border: none;
-            border-radius: 5px;
-        .logout-btn {
-            background-color: #dc3545;
-            color: #fff;
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 5px;
+            padding: 12px 25px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 30px;
             cursor: pointer;
-            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #16a085;
+        }
+        /* Messages */
+        .message {
+            margin-bottom: 20px;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(220,53,69,0.08);
-            transition: background 0.2s, color 0.2s;
+            padding: 12px 20px;
+            border-radius: 8px;
         }
-        .logout-btn:hover {
-            background-color: #a71d2a;
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
         }
-            }
-            h1, h2 {
-                font-size: 1rem;
-            }
-            .form-container, .tickets-container {
-                border-radius: 8px;
-                padding: 0.5rem;
-            }
-            .ticket {
-                padding: 0.5rem;
-                font-size: 0.95rem;
-            }
-            button {
-                font-size: 0.95rem;
-                padding: 0.5rem 0.8rem;
-            }
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        /* Liste tickets */
+        .tickets {
+            margin-bottom: 60px;
+        }
+        .tickets h2 {
+            color: #34495e;
+            border-bottom: 3px solid #1abc9c;
+            padding-bottom: 8px;
+            margin-bottom: 25px;
+        }
+        .ticket {
+            background: white;
+            border-radius: 10px;
+            padding: 20px 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            transition: box-shadow 0.3s ease;
+        }
+        .ticket:hover {
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+        }
+        .ticket h3 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            color: #16a085;
+        }
+        .ticket p {
+            margin: 6px 0;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        .ticket .status {
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            color: white;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .status.Ouvert {
+            background-color: #27ae60;
+        }
+        .status.Fermé {
+            background-color: #e74c3c;
+        }
+        .response {
+            background-color: #e0f7f5;
+            border-left: 5px solid #1abc9c;
+            padding: 15px 20px;
+            margin-top: 15px;
+            border-radius: 8px;
+            color: #34495e;
+            font-style: italic;
+            white-space: pre-wrap;
+        }
+        /* Section Médias */
+        .media-section {
+            background: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .media-section h2 {
+            color: #34495e;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #1abc9c;
+            padding-bottom: 8px;
+        }
+        .media-section p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+        }
+        .btn-media {
+            background-color: #1abc9c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .btn-media:hover {
+            background-color: #16a085;
         }
 
-        /* From Uiverse.io by vinodjangid07 */ 
-.Btn {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 45px;
-  height: 45px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition-duration: .3s;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-  background-color: rgb(255, 65, 65);
-}
-
-/* plus sign */
-.sign {
-  width: 100%;
-  transition-duration: .3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sign svg {
-  width: 17px;
-}
-
-.sign svg path {
-  fill: white;
-}
-/* text */
-.text {
-  position: absolute;
-  right: 0%;
-  width: 0%;
-  opacity: 0;
-  color: white;
-  font-size: 1.2em;
-  font-weight: 600;
-  transition-duration: .3s;
-}
-/* hover effect on button width */
-.Btn:hover {
-  width: 125px;
-  border-radius: 40px;
-  transition-duration: .3s;
-}
-
-.Btn:hover .sign {
-  width: 30%;
-  transition-duration: .3s;
-  padding-left: 20px;
-}
-/* hover effect button's text */
-.Btn:hover .text {
-  opacity: 1;
-  width: 70%;
-  transition-duration: .3s;
-  padding-right: 10px;
-}
-/* button click effect*/
-.Btn:active {
-  transform: translate(2px ,2px);
-}
+        /* Responsive */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            header .left, header .right {
+                flex-wrap: wrap;
+            }
+            main {
+                margin: 20px 15px;
+                padding: 0 10px;
+            }
+        }
     </style>
 </head>
 <body>
-
-<div class="container">
-    <div class="header">
-        <h1>Bienvenue, <?= htmlspecialchars($_SESSION['user_email']) ?></h1>
-        <form action="logout.php" method="get" style="margin:0;">
-            <button class="Btn" type="submit">
-                <div class="sign"><svg viewBox="0 0 512 512" style="width:24px;height:24px;"><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path></svg></div>
-                <div class="text">Logout</div>
-            </button>
-        </form>
+<header>
+    <div class="left">
+        <a href="user_dashboard.php">Tableau de bord</a>
+        <a href="media.php" target="_blank" rel="noopener noreferrer">Médias</a>
     </div>
+    <div class="right">
+        <img src="<?= htmlspecialchars($user['profile_image']) ?>" alt="Avatar" class="avatar" />
+        <span><?= htmlspecialchars($user['username']) ?></span>
+        <a href="logout.php" style="margin-left: 25px; font-weight: 700; color:#e74c3c;">Déconnexion</a>
+    </div>
+</header>
 
-    <div class="form-container">
+<main>
+    <h1>Bienvenue, <?= htmlspecialchars($user['username']) ?> !</h1>
+
+    <?php if (isset($success_message)): ?>
+        <div class="message success"><?= htmlspecialchars($success_message) ?></div>
+    <?php endif; ?>
+    <?php if (isset($error_message)): ?>
+        <div class="message error"><?= htmlspecialchars($error_message) ?></div>
+    <?php endif; ?>
+
+    <form method="POST" action="user_dashboard.php" novalidate>
         <h2>Créer un nouveau ticket</h2>
-        <form action="user_dashboard.php" method="POST">
-            <input type="text" name="titre" placeholder="Titre de votre ticket" required>
-            <textarea name="message" rows="5" placeholder="Décrivez votre problème ici..." required></textarea>
-            <button type="submit" name="create_ticket" id="sendTicketBtn" <?php if (isset($can_send) && !$can_send) echo 'disabled'; ?>>Envoyer le ticket</button>
-        </form>
-        <?php if (isset($can_send) && !$can_send): ?>
-            <div id="ticket-timer" style="text-align:center;margin-top:10px;color:#dc3545;font-weight:500;font-size:1.1em;">
-                Vous pourrez envoyer un nouveau ticket dans : <span id="timer-value"><?php echo $hours."h ".$minutes."min"; ?></span>
+        <?php if (isset($show_timer) && $show_timer && isset($time_left) && $time_left > 0): ?>
+            <div class="message error">
+                <span>Vous pourrez créer un ticket dans :</span>
+                <span id="ticket-timer" style="font-weight:bold;color:#e74c3c;"></span>
             </div>
             <script>
-                // Timer dynamique
-                let totalSeconds = <?php echo intval($hours*3600 + $minutes*60); ?>;
-                const timerValue = document.getElementById('timer-value');
-                const sendBtn = document.getElementById('sendTicketBtn');
+                var timeLeft = <?= $time_left ?>;
+                function formatTime(sec) {
+                    var h = Math.floor(sec / 3600);
+                    var m = Math.floor((sec % 3600) / 60);
+                    var s = sec % 60;
+                    return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+                }
                 function updateTimer() {
-                    if (totalSeconds > 0) {
-                        totalSeconds--;
-                        let h = Math.floor(totalSeconds/3600);
-                        let m = Math.floor((totalSeconds%3600)/60);
-                        let s = totalSeconds%60;
-                        timerValue.textContent = `${h}h ${m}min ${s}s`;
+                    var el = document.getElementById('ticket-timer');
+                    if (timeLeft > 0) {
+                        el.textContent = formatTime(timeLeft);
+                        timeLeft--;
                     } else {
-                        timerValue.textContent = 'Vous pouvez envoyer un ticket.';
-                        sendBtn.disabled = false;
+                        el.textContent = '00:00:00';
+                        location.reload();
                     }
                 }
+                updateTimer();
                 setInterval(updateTimer, 1000);
             </script>
         <?php endif; ?>
-    </div>
+        <label for="titre">Titre du ticket</label>
+        <input type="text" id="titre" name="titre" placeholder="Titre" required maxlength="255" <?php if (isset($show_timer) && $show_timer && isset($time_left) && $time_left > 0) echo 'disabled'; ?> />
+        <label for="message">Description du problème</label>
+        <textarea id="message" name="message" rows="5" placeholder="Expliquez votre problème..." required <?php if (isset($show_timer) && $show_timer && isset($time_left) && $time_left > 0) echo 'disabled'; ?>></textarea>
+        <button type="submit" name="create_ticket" <?php if (isset($show_timer) && $show_timer && isset($time_left) && $time_left > 0) echo 'disabled'; ?>>Envoyer le ticket</button>
+    </form>
 
-    <div class="tickets-container">
+    <section class="tickets">
         <h2>Mes tickets</h2>
         <?php if (empty($tickets)): ?>
             <p>Vous n'avez aucun ticket pour le moment.</p>
         <?php else: ?>
             <?php foreach ($tickets as $ticket): ?>
-                <div class="ticket">
-                    <h3>ID #<?= $ticket['id'] ?> - <?= htmlspecialchars($ticket['titre']) ?></h3>
+                <article class="ticket">
+                    <h3>#<?= $ticket['id'] ?> - <?= htmlspecialchars($ticket['titre']) ?></h3>
                     <p><strong>Date :</strong> <?= date('d/m/Y H:i', strtotime($ticket['date_creation'])) ?></p>
-                    <p><strong>Statut :</strong> <span class="status <?= $ticket['statut'] ?>"><?= $ticket['statut'] ?></span></p>
-                    <p><strong>Mon message :</strong><br><?= nl2br(htmlspecialchars($ticket['message'])) ?></p>
+                    <p><strong>Statut :</strong> <span class="status <?= htmlspecialchars($ticket['statut']) ?>"><?= htmlspecialchars($ticket['statut']) ?></span></p>
+                    <p><strong>Message :</strong><br><?= nl2br(htmlspecialchars($ticket['message'])) ?></p>
+
                     <?php if (!empty($ticket['reponse_admin'])): ?>
                         <div class="response">
                             <strong>Réponse de l'administrateur :</strong><br>
                             <?= nl2br(htmlspecialchars($ticket['reponse_admin'])) ?>
                         </div>
                     <?php endif; ?>
-                </div>
+                </article>
             <?php endforeach; ?>
         <?php endif; ?>
-    </div>
-</div>
+    </section>
+
+    <section class="media-section">
+        <h2>Fil d'actualité & Médias</h2>
+        <p>Consultez les derniers posts, commentez et réagissez, mais vous ne pouvez pas modifier le contenu.</p>
+        <a href="media.php" target="_blank" rel="noopener noreferrer" class="btn-media">Voir les médias</a>
+    </section>
+</main>
 
 </body>
 </html>

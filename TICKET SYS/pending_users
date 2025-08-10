@@ -1,0 +1,35 @@
+<?php
+// Connexion BDD (PDO ou MySQLi) supposée
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $password = $_POST['password'];
+
+    // Validation email simple
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        die("Email invalide");
+    }
+
+    // Vérifier si email déjà existant dans users ou pending_users
+    // ...
+
+    // Générer un token unique
+    $token = bin2hex(random_bytes(16));
+
+    // Hasher le mot de passe
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+    // Insérer dans pending_users
+    $stmt = $pdo->prepare("INSERT INTO pending_users (name, email, password_hash, token, created_at, verified) VALUES (?, ?, ?, ?, NOW(), 0)");
+    $stmt->execute([$name, $email, $passwordHash, $token]);
+
+    // Envoyer email de vérification
+    $verificationLink = "https://tonsite.com/verify.php?token=$token";
+    $subject = "Vérifiez votre email";
+    $message = "Bonjour $name,\nCliquez sur ce lien pour valider votre compte : $verificationLink";
+    mail($email, $subject, $message);
+
+    echo "Un email de vérification vous a été envoyé.";
+}
+?>

@@ -1,94 +1,90 @@
 <?php
-// Fichier : reply_ticket.php
+// Fichier : reply_ticket.php (Version améliorée)
 session_start();
 require_once 'config.php';
 
-// Protection : doit être admin
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     header('Location: login.php');
     exit();
 }
-
-// Récupérer l'ID du ticket depuis l'URL
 $ticket_id = $_GET['id'] ?? 0;
-if (!$ticket_id) {
-    header('Location: admin_dashboard.php');
-    exit();
-}
+if (!$ticket_id) { header('Location: manage_tickets.php'); exit(); }
 
-// Logique pour envoyer une réponse
+// Logique pour poster une réponse/changer le statut
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_reply'])) {
     $reponse = trim($_POST['reponse']);
     $statut = $_POST['statut'];
-    
     $stmt = $pdo->prepare("UPDATE tickets SET reponse_admin = ?, statut = ? WHERE id = ?");
     $stmt->execute([$reponse, $statut, $ticket_id]);
     $success_message = "Réponse envoyée et statut mis à jour.";
 }
 
-// Récupérer les informations complètes du ticket
-$stmt = $pdo->prepare("
-    SELECT tickets.*, utilisateurs.email 
-    FROM tickets 
-    JOIN utilisateurs ON tickets.id_utilisateur = utilisateurs.id 
-    WHERE tickets.id = ?
-");
+// Récupérer les infos complètes du ticket
+$stmt = $pdo->prepare("SELECT t.*, u.username, u.profile_image FROM tickets t JOIN utilisateurs u ON t.id_utilisateur = u.id WHERE t.id = ?");
 $stmt->execute([$ticket_id]);
 $ticket = $stmt->fetch(PDO::FETCH_ASSOC);
-
-if (!$ticket) {
-    // Si le ticket n'existe pas, on redirige
-    header('Location: admin_dashboard.php');
-    exit();
-}
+if (!$ticket) { header('Location: manage_tickets.php'); exit(); }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <title>Répondre au Ticket #<?= $ticket['id'] ?></title>
-    <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        a { color: #007bff; }
-        .ticket-info { border-bottom: 1px solid #eee; padding-bottom: 15px; margin-bottom: 15px; }
-        .user-message { background-color: #f9f9f9; padding: 15px; border-radius: 5px; }
-        textarea, select { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
-
 <div class="container">
-    <p><a href="admin_dashboard.php">&larr; Retour au tableau de bord</a></p>
-    <h1>Ticket #<?= $ticket['id'] ?> - <?= htmlspecialchars($ticket['titre']) ?></h1>
-    
-    <div class="ticket-info">
-        <p><strong>De :</strong> <?= htmlspecialchars($ticket['email']) ?></p>
-        <p><strong>Date :</strong> <?= date('d/m/Y H:i', strtotime($ticket['date_creation'])) ?></p>
-        <p><strong>Statut actuel :</strong> <?= $ticket['statut'] ?></p>
-        <div class="user-message">
-            <strong>Message de l'utilisateur :</strong><br>
-            <?= nl2br(htmlspecialchars($ticket['message'])) ?>
-        </div>
+    <div class="header">
+        <h1>Ticket #<?= $ticket['id'] ?></h1>
+        <a href="manage_tickets.php" class="btn btn-primary">&larr; Retour</a>
     </div>
 
-    <h2>Répondre au ticket</h2>
-    <?php if(isset($success_message)) { echo "<p style='color:green;'>$success_message</p>"; } ?>
-    <form action="reply_ticket.php?id=<?= $ticket['id'] ?>" method="POST">
-        <label for="reponse">Votre réponse :</label>
-        <textarea name="reponse" id="reponse" rows="8"><?= htmlspecialchars($ticket['reponse_admin'] ?? '') ?></textarea>
-        
-        <label for="statut">Changer le statut :</label>
-        <select name="statut" id="statut">
-            <option value="Ouvert" <?= $ticket['statut'] == 'Ouvert' ? 'selected' : '' ?>>Ouvert</option>
-            <option value="Fermé" <?= $ticket['statut'] == 'Fermé' ? 'selected' : '' ?>>Fermé</option>
-        </select>
-        
-        <button type="submit" name="submit_reply">Envoyer la réponse</button>
-    </form>
-</div>
+    <?php if(isset($success_message)) { echo "<p class='message'>$success_message</p>"; } ?>
 
+    <div class="ticket-reply-grid">
+        <div class="ticket-details">
+            <h3>Détails du Ticket</h3>
+            <p><strong>Utilisateur :</strong> <?= htmlspecialchars($ticket['username']) ?></p>
+            <p><strong>Date :</strong> <?= date('d/m/Y H:i', strtotime($ticket['date_creation'])) ?></p>
+            <p><strong>Statut :</strong> <span class="status-badge status-<?= str_replace(' ', '-', strtolower($ticket['statut'])) ?>"><?= htmlspecialchars($ticket['statut']) ?></span></p>
+            <hr>
+            <h4>Message de l'utilisateur :</h4>
+            <div class="user-message-box">
+                <?= nl2br(htmlspecialchars($ticket['message'])) ?>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <h3>Votre Réponse</h3>
+            <form action="reply_ticket.php?id=<?= $ticket['id'] ?>" method="POST">
+                <div class="input-group">
+                    <label for="reponse">Message de réponse :</label>
+                    <textarea name="reponse" id="reponse" rows="10"><?= htmlspecialchars($ticket['reponse_admin'] ?? '') ?></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="statut">Mettre à jour le statut :</label>
+                    <select name="statut" id="statut">
+                        <!-- NOUVEAU MENU DE STATUT COMPLET -->
+                        <option value="Ouvert" <?= $ticket['statut'] == 'Ouvert' ? 'selected' : '' ?>>Ouvert</option>
+                        <option value="En attente" <?= $ticket['statut'] == 'En attente' ? 'selected' : '' ?>>En attente (de la réponse client)</option>
+                        <option value="Fermé" <?= $ticket['statut'] == 'Fermé' ? 'selected' : '' ?>>Fermé (résolu)</option>
+                    </select>
+                </div>
+                <button type="submit" name="submit_reply" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> Envoyer la réponse</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- NOUVELLE SECTION ZONE DE DANGER -->
+    <div class="danger-zone">
+        <h4>Zone de Danger</h4>
+        <p>Cette action est irréversible et supprimera toutes les données liées à ce ticket.</p>
+        <a href="delete_ticket.php?id=<?= $ticket['id'] ?>" class="btn btn-danger-outline"
+           onclick="return confirm('Êtes-vous absolument certain de vouloir supprimer ce ticket ?');">
+           <i class="fa-solid fa-trash-alt"></i> Supprimer Définitivement le Ticket
+        </a>
+    </div>
+</div>
 </body>
 </html>
