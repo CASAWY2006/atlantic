@@ -35,6 +35,8 @@ $admin = $stmt->fetch(PDO::FETCH_ASSOC);
             </a>
             <a href="logout.php">Déconnexion</a>
         </div>
+        
+
     </div>
     <div class="container">
         <div class="header">

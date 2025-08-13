@@ -185,9 +185,306 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         .message { text-align: center; color: green; margin-bottom: 1rem; }
         .error { text-align: center; color: red; margin-bottom: 1rem; }
         #signup-form { display: none; }
+
+        
+/* Responsive design optimisé pour les téléphones */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding: 0;
+        overflow-x: hidden;
+    }
+
+    .header-container {
+        padding: 5px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .main-nav {
+        display: none;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+    }
+
+    .main-nav.active {
+        display: block;
+    }
+
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 10px;
+        display: none;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        padding: 10px;
+        margin: 0;
+    }
+
+    .main-nav ul li a {
+        padding: 12px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, 0.1);
+        margin: 5px 0;
+        display: block;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .logo img {
+        height: 40px;
+        width: auto;
+    }
+
+    .logo-text {
+        font-size: 18px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 10px;
+        flex-direction: column;
+    }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .hero-section {
+    padding: 20px 0;
+    margin-top: 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-content {
+    text-align: center;
+    padding: 15px 10px;
+    background: transparent;
+    margin: 0 auto;
+    max-width: 100%;
+    position: relative;
+    backdrop-filter: blur(3px);
+  }
+
+  .hero-content h1.spaced-title {
+    font-size: 32px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    letter-spacing: 2px;
+    color: var(--color-gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-content h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 25px;
+  }
+
+  nav ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 8px;
+  }
+
+  .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);
+  }
+
+  .header, .footer {
+    text-align: center;
+    padding: 10px 5px;
+  }
+
+  .hero-content {
+    padding: 10px;
+    margin-top: 60px;
+  }
+/* HEADER GLOBAL */
+.header {
+    position: fixed;         /* Fixé en haut */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.9);  /* Fond sombre semi-transparent */
+    color: white;
+}
+
+/* Conteneur du header */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo img {
+    height: 40px;
+}
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Navigation desktop */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+.main-nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: background 0.3s;
+}
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+/* ESPACEMENT POUR LE CONTENU */
+body {
+    padding-top: 70px; /* Pour éviter que le header cache le contenu */
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 1000;
+    color: white;
+}
+
+/* Conteneur logo + bouton */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo img {
+    height: 40px;
+}
+.logo-text {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Menu horizontal */
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+.main-nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: background 0.3s;
+}
+.main-nav ul li a:hover,
+.main-nav ul li a.active {
+    background: rgba(255,255,255,0.2);
+    border-radius: 5px;
+}
+
+/* Pour que ton contenu ne soit pas caché */
+body {
+    padding-top: 70px;
+}
+/* From Uiverse.io by arieshiphop */ 
+button {
+ font-size: 17px;
+ padding: 0.5em 2em;
+ border: transparent;
+ box-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+ background: dodgerblue;
+ color: white;
+ border-radius: 4px;
+}
+
+button:hover {
+ background: rgb(2,0,36);
+ background: linear-gradient(90deg, rgba(30,144,255,1) 0%, rgba(0,212,255,1) 100%);
+}
+
+button:active {
+ transform: translate(0em, 0.2em);
+}
+
     </style>
 </head>
+
 <body>
+
+
 <div class="container">
     <div id="login-form">
         <h2>Connexion</h2>
