@@ -1,304 +1,188 @@
-@import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@400;700;900&display=swap');
 
-/* === VARIABLES === */
-:root {
-  --gold: #d4af37;
-  --bright-gold: #ffd700;
-  --orange: #ff6b00;
-  --red: #ff3c00;
-  --green: #32cd32;
-  --purple: #4b0082;
-  --dark: #0f0f1f;
-  --bg: linear-gradient(to bottom, #0f0f1f, #4b0082, #ff3c00);
-}
+  /* === VARIABLES & RESET === */
+  :root {
+    --gold: #d4af37;
+    --bright-gold: #ffd700;
+    --orange: #ff6b00;
+    --red: #ff3c00;
+    --discord-blue: #5865F2;
+    --discord-hover: #404EED;
+    --dark-bg: #0f0f1f;
+    --main-text: #fff;
+    --light-text: #eee;
+  }
 
-/* === RESET === */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-background: url('IMG/looatcma.jpg') ;
-
-}
-
-/* === HEADER === */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 5%;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  background: rgba(0, 0, 0, 0.85);
-  border-bottom: 2px solid var(--gold);
-  backdrop-filter: blur(8px);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.logo img {
-  height: 60px;
-  filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
-}
-
-.logo-text {
-  font-family: 'Luckiest Guy', cursive;
-  font-size: 26px;
-  background: linear-gradient(to right, red, orange, yellow, green);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* === NAVIGATION === */
-nav ul {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-}
-
-nav a {
-  font-weight: 600;
-  font-size: 16px;
-  color: #fff;
-  padding: 8px 15px;
-  border-radius: 5px;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-nav a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 0;
-  background: linear-gradient(to right, var(--gold), var(--bright-gold));
-  transition: width 0.3s ease;
-}
-
-nav a:hover,
-nav a.active {
-  color: var(--gold);
-  background: rgba(255, 215, 0, 0.1);
-}
-
-nav a:hover::before,
-nav a.active::before {
-  width: 100%;
-}
-
-/* === HERO SECTION === */
-.hero-section {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background: url('IMGG/backgr.jpeg') center/cover no-repeat;
-  position: relative; 
-}
-
-.hero-section::before {
-    content: none !important;
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 15, 31, 0.6);
-  backdrop-filter: blur(5px);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 800px;
-   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
-}
-
-.hero-content h1.spaced-title {
-  font-family: 'Luckiest Guy', cursive;
-  font-size: 72px;
-  letter-spacing: 10px;
-  background: linear-gradient(to right, red, orange, yellow, green);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 20px rgba(255, 165, 0, 0.5);
-  animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-  from { filter: drop-shadow(0 0 10px var(--gold)); }
-  to { filter: drop-shadow(0 0 20px var(--bright-gold)); }
-}
-
-.hero-content p {
-  font-size: 18px;
-  margin: 20px 0;
-  color: #eee;
-  opacity: 0.9;
-  transition: opacity 0.5s ease;
-}
-
-/* === NOUVEAUX BOUTONS PROFESSIONNELS === */
-.hero-buttons {
-  margin-top: 30px;
-}
-
-.hero-buttons .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 30px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 12px;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  background: #1a1a1a;
-  color: #fff;
-}
-
-.hero-buttons .btn:hover {
-  transform: translateY(-3px);
-}
-
-/* ===== BOUTON DISCORD ===== */
-.btn-discord {
-  background: linear-gradient(to right, #5865F2, #404EED);
-  color: #fff;
-  border: none;
-  box-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-discord:hover {
-  background: linear-gradient(to right, #404EED, #5865F2);
-  box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
-}
-
-/* ===== BOUTON CONNECT ===== */
-.btn-connect {
-  background: transparent;
-  border: 2px solid var(--gold);
-  color: var(--gold);
-  background-color: rgba(255, 255, 255, 0.03);
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-connect:hover {
-  background-color: var(--gold);
-  color: #000;
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
-}
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none; /* Supprime le soulignement des liens par défaut */
+  }
 
 
-/* === TEXTE ANIMÉ CHANGEMENT === */
-#changing-text {
-  font-family: 'Cinzel', serif;
-  font-size: 22px;
-  margin-top: 20px;
-  opacity: 0.9;
-  transition: color 0.5s ease;
-  min-height: 80px;
-}
+  /* === HEADER === */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    border-bottom: 2px solid var(--gold);
+    backdrop-filter: blur(8px);
+  }
 
-/* === BOUTONS === */
-.hero-buttons {
-  margin-top: 30px;
-}
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
 
-.hero-buttons .btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 14px 30px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: 12px;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  background: #1a1a1a;
-  color: #fff;
-}
+  .logo img {
+    height: 60px;
+    filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
+  }
 
-.hero-buttons .btn:hover {
-  transform: translateY(-3px);
-}
-.animated-text {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  margin-top: 20px;
-  animation: fadeInOut 5s ease-in-out infinite;
-  /* text-shadow pour lisibilité */
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-}
+  .logo-text {
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 26px;
+    background: linear-gradient(to right, red, orange, yellow, green);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-.admins-section {
-  background-color: #111;
-  color: #fff;
-  padding: 40px 20px;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-}
 
-.admins-section h2 {
-  font-size: 28px;
-  margin-bottom: 30px;
-  font-weight: 700;
-}
+  /* === TEXTES ANIMÉS === */
+  #changing-text {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    margin-top: 20px;
+    min-height: 30px; /* Empêche le saut de page pendant le changement */
+  }
 
-.admins-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+  .animated-text {
+    font-weight: 700;
+    font-size: 24px;
+    margin-top: 20px;
+    animation: fadeInOut 5s ease-in-out infinite;
+  }
 
-.admin-card {
-  padding: 15px;
-}
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
 
-.admin-card img {
-  width: 160px;  /* taille agrandie */
-  height: 160px; /* taille agrandie */
-  object-fit: cover;
-  border-radius: 50%; /* cercle parfait */
-  margin-bottom: 15px;
-  border: 3px solid #ff3c00; /* couleur orange */
-}
+  /* === BOUTONS PROFESSIONNELS === */
+  .hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne sur petits écrans */
+  }
 
-.admin-info h3 {
-  margin: 0;
-  font-size: 22px; /* texte un peu plus grand */
-  font-weight: 700;
-}
+  .hero-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
 
-.admin-info p {
-  margin: 5px 0 0 0;
-  font-size: 18px;
-  color: #ffd700; /* jaune */
-  font-weight: 600;
-}
+  .hero-buttons .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
 
+  /* --- BOUTON DISCORD --- */
+  .btn-discord {
+    background: linear-gradient(to right, var(--discord-blue), var(--discord-hover));
+    color: var(--main-text);
+    border: none;
+    box-shadow: 0 0 10px rgba(88, 101, 242, 0.4);
+  }
+
+  .btn-discord:hover {
+    background: linear-gradient(to right, var(--discord-hover), var(--discord-blue));
+    box-shadow: 0 0 15px rgba(88, 101, 242, 0.6);
+  }
+
+  /* --- BOUTON CONNECT --- */
+  .btn-connect {
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .btn-connect:hover {
+    background-color: var(--gold);
+    color: #000;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.6);
+  }
+
+  /* === SECTION ADMINS === */
+  .admins-section {
+    background-color: #111;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .admins-section h2 {
+    font-size: 32px;
+    margin-bottom: 40px;
+    font-weight: 700;
+  }
+
+  .admins-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .admin-card {
+    padding: 15px;
+    transition: transform 0.3s ease;
+  }
+
+  .admin-card:hover {
+      transform: scale(1.05);
+  }
+
+  .admin-card img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 4px solid var(--orange);
+    box-shadow: 0 0 15px rgba(255, 60, 0, 0.5);
+  }
+
+  .admin-info h3 {
+    margin: 10px 0 5px 0;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .admin-info p {
+    margin: 0;
+    font-size: 18px;
+    color: var(--bright-gold);
+    font-weight: 600;
+  } 

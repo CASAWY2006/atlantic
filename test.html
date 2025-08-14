@@ -9,7 +9,7 @@
   <title>A T L A N T I C | Serveur RP Marocain - GTA FiveM</title>
   <link rel="icon" type="image/png" href="IMG/AYV RE.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="css/STYLE.CSS">
+ 
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/transitions.css">
  <meta name="keywords" content=" GTA MAROC , atlanticmarocrp , atcma , atc , maroc rp , atlantic rp , top 1 rp , cfx , cfx maroc ,GTA, RP, Maroc, FiveM, Atlantic, serveur, roleplay, marocain, gta rp maroc, serveur gta rp maroc, serveur roleplay maroc, rp maroc, serveur fivem maroc, gta fivem maroc, roleplay marocain, rp sérieux maroc, ville marocaine rp, communauté rp maroc, police rp maroc, gendarmerie rp maroc, douane rp maroc, carte nationale rp, rp marocain gta 5, meilleur serveur gta maroc, rp maroc officiel, rp maroc whitelist, rp maroc réaliste gta rp morocco, fivem morocco, moroccan roleplay server, morocco gta rp server, morocco fivem whitelist, moroccan gta 5 rp, realistic moroccan rp, fivem arabic server, arabic gta rp, moroccan rp community, gta rp in morocco, rp server morocco, moroccan fivem community, rp marocain, serveur marocain fivem, server mribi, server gta rp mribi, rp fivem maroc, rp zwin maroc, server fivem dyalna, gta mribi, fivem maroc, roleplay maroc, serfer marocain, serfer fivem maroc, serfer gta rp maroc, server mgharba, serfer dyal ldrari, drari fivem, l7ouma gta rp, bghit ndkhol f server maroc, gta rp maroc 2025, server gta maroc, rp maroc darija, fivem maroc 2025, serveur gta 5 maroc, rp gta maroc, fivem maroc whitelist, serfer mribi gta, rp mgharba, serfer dyal maroc, join rp maroc, gta5 rp maroc, rp arabe maroc, gta 5 maroc rp, rp maroc best server, rp maroc discord, rp maroc pas whitelist, serveur numéro un maroc, serveur gta rp numéro 1 maroc, serveur le plus populaire fivem maroc, serveur gta rp avec le plus grand nombre de joueurs maroc, أفضل سيرفر GTA RP في المغرب, أكثر سيرفرات RP بحثًا في جوجل, السيرفر رقم واحد في FiveM المغرب، أكبر مجتمع RP مغربي، اللعب الجماعي على مستوى عالي, سيرفر لعب أونلاين جتا المغرب، سيرفرات فاي فاي إم المغرب، السيرفر المغربي الأول في GTA RP, maroc gta rp top serveur, gta rp maroc player count, serveur rp maroc 2025, meilleur serveur rp marocain, serveur gta rp sérieux maroc, communauté rp la plus active maroc">
@@ -830,7 +830,28 @@ html, body {
     transform: translateY(-400%);
   }
 }
-
+ #bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.85;
+  transition: opacity 0.8s;
+  background: #000;
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  #bg-video {
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;
+  }
+}
 
   </style>
 </head>
@@ -838,6 +859,10 @@ html, body {
 
 
 <body class="atlantic-body">
+    
+ <video autoplay muted loop playsinline id="bg-video">
+    <source src="/video/BG - Made with Clipchamp.mp4" type="video/mp4">
+  </video>
 
   <!-- =========== EN-TÊTE =========== -->
   <header>

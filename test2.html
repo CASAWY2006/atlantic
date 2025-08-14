@@ -9,7 +9,7 @@
   <title>A T L A N T I C | Serveur RP Marocain - GTA FiveM</title>
   <link rel="icon" type="image/png" href="IMG/AYV RE.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="css/STYLE.CSS">
+ 
   <link rel="stylesheet" href="css/header.css">
   <link rel="stylesheet" href="css/transitions.css">
  <meta name="keywords" content=" GTA MAROC , atlanticmarocrp , atcma , atc , maroc rp , atlantic rp , top 1 rp , cfx , cfx maroc ,GTA, RP, Maroc, FiveM, Atlantic, serveur, roleplay, marocain, gta rp maroc, serveur gta rp maroc, serveur roleplay maroc, rp maroc, serveur fivem maroc, gta fivem maroc, roleplay marocain, rp sérieux maroc, ville marocaine rp, communauté rp maroc, police rp maroc, gendarmerie rp maroc, douane rp maroc, carte nationale rp, rp marocain gta 5, meilleur serveur gta maroc, rp maroc officiel, rp maroc whitelist, rp maroc réaliste gta rp morocco, fivem morocco, moroccan roleplay server, morocco gta rp server, morocco fivem whitelist, moroccan gta 5 rp, realistic moroccan rp, fivem arabic server, arabic gta rp, moroccan rp community, gta rp in morocco, rp server morocco, moroccan fivem community, rp marocain, serveur marocain fivem, server mribi, server gta rp mribi, rp fivem maroc, rp zwin maroc, server fivem dyalna, gta mribi, fivem maroc, roleplay maroc, serfer marocain, serfer fivem maroc, serfer gta rp maroc, server mgharba, serfer dyal ldrari, drari fivem, l7ouma gta rp, bghit ndkhol f server maroc, gta rp maroc 2025, server gta maroc, rp maroc darija, fivem maroc 2025, serveur gta 5 maroc, rp gta maroc, fivem maroc whitelist, serfer mribi gta, rp mgharba, serfer dyal maroc, join rp maroc, gta5 rp maroc, rp arabe maroc, gta 5 maroc rp, rp maroc best server, rp maroc discord, rp maroc pas whitelist, serveur numéro un maroc, serveur gta rp numéro 1 maroc, serveur le plus populaire fivem maroc, serveur gta rp avec le plus grand nombre de joueurs maroc, أفضل سيرفر GTA RP في المغرب, أكثر سيرفرات RP بحثًا في جوجل, السيرفر رقم واحد في FiveM المغرب، أكبر مجتمع RP مغربي، اللعب الجماعي على مستوى عالي, سيرفر لعب أونلاين جتا المغرب، سيرفرات فاي فاي إم المغرب، السيرفر المغربي الأول في GTA RP, maroc gta rp top serveur, gta rp maroc player count, serveur rp maroc 2025, meilleur serveur rp marocain, serveur gta rp sérieux maroc, communauté rp la plus active maroc">
@@ -543,13 +543,6 @@
     }
     
     /* Corrigé pour éviter conflits globaux */
-    .atlantic-body {
-      margin: 0;
-      padding: 80px 0 0 0;
-      background: url('willatc.jpeg') no-repeat center top scroll;
-      background-size: cover;
-      font-family: Arial, sans-serif;
-    }
 
     /* Globe zone droite */
     #zone-droite {
@@ -725,21 +718,7 @@
     background: #4752c4;
 }
 
-html, body {
-    margin: 0;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
 
-    background-color: #020220; /* couleur de fond continue après l’image */
-    background-image:
-        linear-gradient(to bottom, rgba(0,0,0,0) 80%, #111 100%),
-        url('IMG/ATCMARP.PNG');
-    background-position: top center;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-
-}
 
 /* From Uiverse.io by kennyotsu */ 
 .card {
@@ -830,14 +809,401 @@ html, body {
     transform: translateY(-400%);
   }
 }
+ #bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0.85;
+  transition: opacity 0.8s;
+  background: #000;
+  pointer-events: none;
+}
+@media (max-width: 768px) {
+  #bg-video {
+    min-width: 100vw;
+    min-height: 100vh;
+    object-fit: cover;
+  }
+}
+/* ================================================== */
+/*          CSS PROFESSIONNEL POUR LE FOOTER            */
+/* ================================================== */
+
+/* --- Variables de Couleurs pour un Thème Cohérent --- */
+:root {
+  --footer-bg: #111111; /* Un noir profond et moderne */
+  --footer-bg-accent: #1c1c1c; /* Pour les accents subtils */
+  --footer-gold: #e6c55a; /* La couleur dorée signature */
+  --footer-text-primary: #e0e0e0; /* Un blanc cassé pour la lisibilité */
+  --footer-text-secondary: #999; /* Pour le texte moins important */
+  --footer-border-color: #333; /* Couleur des bordures */
+}
+
+/* --- Style Général du Footer --- */
+#footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text-primary);
+  padding: 60px 25px 0; /* Plus d'espace en haut */
+  margin-top: 80px; /* Espace confortable au-dessus du footer */
+  font-family: 'Poppins', 'Segoe UI', sans-serif; /* Police moderne */
+  border-top: 3px solid var(--footer-gold);
+  box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.4);
+}
+
+.footer-container-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Grille Intelligente et Responsive --- */
+.footer-grid {
+  display: grid;
+  /* Crée des colonnes responsives automatiquement sans media query complexe */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 45px;
+  padding-bottom: 50px;
+}
+
+/* --- Style des Colonnes --- */
+.footer-col .logo {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.footer-col .logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.footer-col .logo:hover img {
+    transform: rotate(10deg);
+}
+
+.footer-col .logo-text {
+  font-size: 30px;
+  color: var(--footer-gold);
+  font-weight: 700;
+  letter-spacing: 1.1px;
+}
+
+.footer-col h4 {
+  font-size: 22px;
+  margin-bottom: 25px;
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* Ligne de soulignement décorative pour les titres */
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--footer-gold);
+}
 
 
+.footer-col p {
+  font-size: 15px;
+  color: var(--footer-text-secondary);
+  line-height: 1.8;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center; /* Meilleur alignement vertical */
+  gap: 12px;
+}
+
+.footer-col p i {
+  color: var(--footer-gold);
+}
+
+/* --- Listes de Liens Interactives --- */
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 15px;
+}
+
+.footer-col ul li a {
+  color: var(--footer-text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.footer-col ul li a:hover {
+  color: #fff;
+  transform: translateX(8px); /* Animation de décalage */
+  text-shadow: 0 0 8px rgba(230, 197, 90, 0.5); /* Lueur dorée */
+}
+
+.footer-col ul li a i {
+    transition: transform 0.3s ease;
+}
+.footer-col ul li a:hover i {
+    transform: rotate(360deg); /* Animation de l'icône */
+}
+
+/* --- Icônes de Réseaux Sociaux Modernes --- */
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+.social-icons a {
+  color: var(--footer-text-secondary);
+  font-size: 24px;
+  transition: all 0.3s ease;
+  width: 45px;
+  height: 45px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: var(--footer-bg-accent);
+  border: 1px solid var(--footer-border-color);
+}
+
+.social-icons a:hover {
+  color: #fff;
+  background-color: var(--footer-gold);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 15px rgba(230, 197, 90, 0.2);
+}
+
+/* --- Section Basse du Footer --- */
+.footer-bottom {
+  border-top: 1px solid var(--footer-border-color);
+  padding: 25px 10px;
+  text-align: center;
+  color: var(--footer-text-secondary);
+}
+
+.footer-bottom p {
+  margin: 0 0 10px 0;
+  font-size: 15px;
+}
+
+.footer-bottom .disclaimer {
+  font-size: 12px;
+  opacity: 0.7;
+  max-width: 700px;
+  margin: 10px auto 0;
+  line-height: 1.6;
+}
+
+/* ================================================== */
+/*        OPTIMISATION SPÉCIFIQUE POUR TÉLÉPHONES       */
+/* ================================================== */
+@media screen and (max-width: 768px) {
+  #footer {
+    padding: 40px 15px 0;
+  }
+  
+  .footer-grid {
+    grid-template-columns: 1fr; /* Force une seule colonne */
+    gap: 40px;
+    text-align: center; /* Centre tout le texte */
+  }
+
+  .footer-col h4,
+  .footer-col .logo {
+    justify-content: center; /* Centre le titre et le logo */
+  }
+
+  /* Centre la ligne de soulignement sous le titre */
+  .footer-col h4::after {
+      left: 50%;
+      transform: translateX(-50%);
+  }
+
+  .footer-col p {
+    justify-content: center; /* Centre le contenu des paragraphes */
+  }
+  
+  .footer-col ul li a {
+    justify-content: center;
+  }
+  
+  /* Désactive les animations de mouvement au survol sur mobile */
+  .footer-col ul li a:hover {
+      transform: none;
+  }
+  
+  .social-icons {
+    justify-content: center; /* Centre les icônes sociales */
+  }
+  .social-icons a:hover {
+      transform: none;
+  }
+  
+  .footer-bottom p {
+    font-size: 13px;
+  }
+}
+/* ================================================== */
+/*        CSS ENTIÈREMENT OPTIMISÉ POUR TÉLÉPHONES      */
+/* ================================================== */
+@media screen and (max-width: 768px) {
+
+    /* --- Amélioration Générale --- */
+    body {
+        font-size: 15px; /* Taille de base plus lisible */
+        padding: 0;
+        overflow-x: hidden; /* Empêche le scroll horizontal accidentel */
+        -webkit-tap-highlight-color: transparent; /* Supprime le flash bleu au toucher sur les liens */
+    }
+
+    /* --- Header et Navigation Tactile --- */
+    .header-container {
+        padding: 10px 15px; /* Plus d'espace pour respirer */
+    }
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 10px; /* Zone de clic plus grande */
+    }
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.98);
+        padding: 15px;
+        display: none;
+        border-bottom: 2px solid var(--color-gold);
+    }
+    .main-nav.active {
+        display: block;
+    }
+    .main-nav ul {
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+        margin: 0;
+    }
+    .main-nav ul li a {
+        padding: 15px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        display: block;
+        text-align: center;
+        font-weight: 600;
+        transition: background-color 0.2s;
+    }
+    .main-nav ul li a:active { /* Effet au toucher */
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    /* --- Section Héros Responsive --- */
+    .hero-section {
+        /* On remplace les <br> par un padding intelligent */
+        padding: 80px 15px; 
+        margin-top: 0; /* On enlève la marge devenue inutile */
+        height: auto; /* Hauteur automatique pour s'adapter au contenu */
+        min-height: 80vh; /* Hauteur minimale pour un bel effet visuel */
+    }
+    .hero-content h1.spaced-title {
+        font-size: 36px; /* Plus grand et lisible */
+        white-space: normal; /* Permet au titre de passer à la ligne si besoin */
+        letter-spacing: 2px;
+        line-height: 1.2;
+    }
+    .hero-content h2 {
+        font-size: 18px;
+        margin: 15px 0;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px 0;
+    }
+    .btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 16px;
+        border-radius: 12px; /* Coins plus arrondis, plus moderne */
+    }
+
+    /* --- Section Admins avec Défilement Tactile Amélioré --- */
+    .admins-section {
+        padding: 50px 0; /* Espace vertical avant et après */
+        background: rgba(0, 0, 0, 0.8);
+        margin: 0;
+    }
+    .admins-section h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+    .admins-container {
+        /* Amélioration majeure pour le défilement tactile */
+        display: flex;
+        gap: 20px;
+        padding: 0 15px; /* Laisse de l'espace sur les bords */
+        overflow-x: auto; /* Permet le scroll horizontal */
+        scroll-snap-type: x mandatory; /* Aimante les cartes au défilement */
+        -webkit-overflow-scrolling: touch; /* Défilement fluide sur iOS */
+        scrollbar-width: none; /* Cache la barre de scroll (Firefox) */
+        animation: none; /* On désactive l'animation automatique sur mobile */
+    }
+    .admins-container::-webkit-scrollbar {
+        display: none; /* Cache la barre de scroll (Chrome, Safari) */
+    }
+    .admin-card {
+        scroll-snap-align: center; /* Centre la carte au scroll */
+        min-width: 180px; /* Cartes un peu plus larges */
+        padding: 15px;
+    }
+    .admin-card img {
+        width: 100px;
+        height: 100px;
+    }
+    .admin-card h3 {
+        font-size: 16px;
+    }
+    .admin-card p {
+        font-size: 14px;
+    }
+    .admin-card:active {
+        transform: scale(0.9
   </style>
 </head>
 
 
 
 <body class="atlantic-body">
+    
+ <video autoplay muted loop playsinline id="bg-video">
+    <source src="/video/BG - Made with Clipchamp.mp4" type="video/mp4">
+  </video>
 
   <!-- =========== EN-TÊTE =========== -->
   <header>
@@ -875,7 +1241,7 @@ html, body {
       </div>
     </div>
   </main>
-<BR><BR><BR><BR><BR></BR></BR></BR></BR></BR>
+<BR><BR><BR><BR><BR></BR></BR></BR></BR></BR><BR><BR><BR><BR></BR></BR></BR></BR>
   <!-- =========== SECTION ADMINS =========== -->
   <section class="admins-section">
     <h2>Our Admin Team</h2>
@@ -1051,8 +1417,8 @@ html, body {
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="logo">
-                        <img src="IMG/loo-removebg-preview.png" alt="Logo Atlantic RP">
-                        <span class="logo-text">A T L A N T I C rp</span>
+                        <img src="IMG/willatc.jpeg" alt="Logo Atlantic RP">
+                        <span class="logo-text">A T L A N T I C RP</span>
                     </div>
                     <p data-translate="Le serveur de roleplay GTA V le plus immersif du Maroc. Rejoignez une communauté passionnée et vivez des aventures uniques à Los Santos.">Le serveur de roleplay GTA V le plus immersif du Maroc. Rejoignez une communauté passionnée et vivez des aventures uniques à Los Santos.</p>
                     <p data-translate="The most immersive GTA V roleplay server in Morocco. Join a passionate community and experience unique adventures in Los Santos.">The most immersive GTA V roleplay server in Morocco. Join a passionate community and experience unique adventures in Los Santos.</p>
@@ -1064,7 +1430,7 @@ html, body {
                         <li><a href="https://discord.com/invite/atlantic-roleplay-492135997342220318"><span class="footer-icon"><img src="img/icons8-discord-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Discord Server">Discord Server</span></a></li>
 <li><a href="TICKET SYS/LOGIN.PHP" target="_blank" rel="noopener"><span class="footer-icon"><img src="img/icons8-online-support-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Support & Help">Support & Help</span></a></li>
                         <li><a href="guilde.html"><span class="footer-icon"><img src="img/icons8-about-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Beginner's Guide">Beginner's Guide</span></a></li>
-                        <li><a href="#"><span class="footer-icon"><img src="img/icons8-faq-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="FAQ">FAQ</span></a></li>
+                        <li><a href=""><span class="footer-icon"><img src="img/icons8-faq-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="FAQ">FAQ</span></a></li>
                         <li><a href="https://discord.com/invite/atlantic-roleplay-492135997342220318"><span class="footer-icon"><img src="img/icons8-staff-50.png" alt="email" style="width:20px;height:20px;"></span><span data-translate="Staff Applications">Staff Applications</span></a></li>
                     </ul>
                 </div>

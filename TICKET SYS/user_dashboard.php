@@ -1,8 +1,9 @@
 <?php
+// Fichier : user_dashboard.php (Version Finale - Pro & Autonome)
 session_start();
 require_once 'config.php';
 
-// Protection d'accès : redirige si l'utilisateur n'est pas connecté
+// Sécurité : si pas connecté, redirection
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();
@@ -10,200 +11,225 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Récupérer les informations de l'utilisateur (username + image de profil)
+// Récupérer les informations de l'utilisateur pour l'affichage
 $stmt = $pdo->prepare("SELECT username, profile_image FROM utilisateurs WHERE id = ?");
 $stmt->execute([$user_id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Si l'utilisateur n'existe pas dans la base de données, déconnecter par sécurité
+// Si l'utilisateur a été supprimé mais sa session existe toujours
 if (!$user) {
-    header('Location: logout.php');
+    session_destroy();
+    header('Location: login.php');
     exit();
 }
 ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de Bord</title>
+    <link rel="icon" type="image/png" href="../IMG/AYV RE.png">
+    <title>Mon Espace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <style>
-        /* --- Styles Généraux --- */
         :root {
-            --primary-color: #1abc9c; /* Vert d'eau */
-            --secondary-color: #2c3e50; /* Bleu foncé */
-            --light-gray: #f4f6f8;
-            --dark-text: #34495e;
-            --light-text: #ecf0f1;
-            --card-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            --card-shadow-hover: 0 15px 35px rgba(0,0,0,0.12);
+            --background-image: url('../IMG/ATCMARP.PNG');
+            --container-bg: rgba(28, 28, 35, 0.85);
+            --card-bg: rgba(40, 40, 50, 0.7);
+            --card-hover-bg: rgba(50, 50, 60, 0.9);
+            --border-color: rgba(255, 255, 255, 0.15);
+            --text-color: #e0e0e0;
+            --text-muted: #a0a0b0;
+            --icon-color: #3498db; /* Bleu pour l'utilisateur */
         }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
         body {
-            font-family: 'Segoe UI', 'Roboto', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", sans-serif;
+            background-image: var(--background-image);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-color);
             margin: 0;
-            background-color: var(--light-gray);
-            color: var(--dark-text);
-            line-height: 1.6;
-        }
-
-        /* --- Header --- */
-        header {
-            background-color: white;
-            padding: 15px 30px;
+            padding: 2rem;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            border-bottom: 1px solid #e0e0e0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            min-height: 100vh;
+            box-sizing: border-box;
         }
 
-        header .brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--secondary-color);
+        /* --- MENU DE NAVIGATION (IDENTIQUE AUX AUTRES PAGES) --- */
+        .menu-toggle {
+            position: fixed; top: 20px; right: 20px;
+            background: var(--container-bg); border: 1px solid var(--border-color);
+            color: var(--text-color); width: 50px; height: 50px;
+            border-radius: 50%; font-size: 1.2rem; cursor: pointer;
+            z-index: 1001; transition: all 0.3s ease;
         }
+        .menu-toggle:hover { transform: scale(1.1); background-color: rgba(40,40,50,0.9); }
         
-        header .brand a {
-            text-decoration: none;
-            color: inherit;
+        .main-menu {
+            position: fixed; top: 0; right: 0;
+            width: 300px; height: 100%;
+            background: rgba(30, 30, 40, 0.9);
+            backdrop-filter: blur(10px);
+            border-left: 1px solid var(--border-color);
+            z-index: 1000;
+            display: flex; flex-direction: column;
+            padding: 80px 20px 20px;
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .main-menu.active { transform: translateX(0); }
+        .main-menu a {
+            color: var(--text-color); text-decoration: none; font-size: 1.2rem;
+            padding: 1rem; border-radius: 8px; margin-bottom: 0.5rem;
+            transition: background-color 0.2s, color 0.2s;
+            display: flex; align-items: center;
+        }
+        .main-menu a:hover { background-color: rgba(255,255,255,0.1); color: white; }
+        .main-menu a i { margin-right: 15px; width: 25px; text-align: center; }
+
+        /* --- CONTENEUR PRINCIPAL DU DASHBOARD --- */
+        .dashboard-container {
+            width: 100%; max-width: 900px;
+            background-color: var(--container-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            animation: fadeIn 0.6s ease-out forwards;
         }
 
-        header .user-info {
+        .dashboard-header {
             display: flex;
             align-items: center;
             gap: 15px;
+            margin-bottom: 2rem;
+        }
+        .dashboard-header .avatar {
+            width: 60px; height: 60px;
+            border-radius: 50%; object-fit: cover;
+            border: 2px solid var(--icon-color);
+        }
+        .dashboard-header h1 {
+            font-size: 1.8rem; margin: 0;
+        }
+        .dashboard-header h1 span {
+            font-size: 1rem; font-weight: 400;
+            color: var(--text-muted); display: block;
         }
         
-        .user-info .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--primary-color);
-        }
-
-        .user-info .username {
-            font-weight: 600;
-        }
-
-        .user-info .logout-link {
-            color: #e74c3c;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-        }
-        .user-info .logout-link:hover {
-            color: #c0392b;
-        }
-
-        /* --- Contenu Principal --- */
-        main {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-
-        .welcome-message {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .welcome-message h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        .welcome-message p {
-            font-size: 1.1rem;
-            color: #7f8c8d;
-        }
-        
-        /* --- Cartes de Navigation --- */
+        /* --- GRILLE DES CARTES --- */
         .dashboard-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 1.5rem;
+        }
+
+        .hub-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 40px 30px;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            display: block; /* Pour que le lien remplisse la carte */
-        }
-        
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--card-shadow-hover);
+        .hub-card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover-bg);
+            border-color: var(--icon-color);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .card h2 {
-            margin-top: 0;
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-            color: var(--primary-color);
+        .hub-icon {
+            font-size: 2.5rem;
+            color: var(--icon-color);
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .hub-card:hover .hub-icon {
+            transform: scale(1.1);
+        }
+        .hub-card h3 {
+            font-size: 1.2rem;
+            margin: 0 0 0.5rem 0;
+        }
+        .hub-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0;
+            line-height: 1.4;
         }
 
-        .card p {
-            font-size: 1rem;
-            color: #7f8c8d;
-        }
-
-        /* --- Responsive --- */
+        /* --- RESPONSIVE POUR TÉLÉPHONE --- */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
-                padding: 20px;
-            }
-            main {
-                margin-top: 20px;
-            }
-            .welcome-message h1 {
-                font-size: 2rem;
-            }
+            body { padding: 1rem; }
+            .dashboard-container { padding: 1.5rem; }
+            .dashboard-header { flex-direction: column; text-align: center; }
+            .dashboard-cards { grid-template-columns: 1fr; }
+            .main-menu { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="brand">
-        <a href="user_dashboard.php">Mon Espace</a>
-    </div>
-    <div class="user-info">
-        <span class="username"><?= htmlspecialchars($user['username']) ?></span>
-        <img src="<?= htmlspecialchars($user['profile_image']) ?>" alt="Avatar" class="avatar" />
-        <a href="logout.php" class="logout-link">Déconnexion</a>
-    </div>
-</header>
+    <!-- Menu Hamburger -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Ouvrir le menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <nav class="main-menu" id="main-menu">
+        <a href="admin_dashboard.php"><i class="fa-solid fa-house"></i> Accueil</a>
+        <a href="media.php"><i class="fa-solid fa-photo-film"></i> Consulter le Fil</a>
+        <a href="profile.php"><i class="fa-solid fa-user"></i> Mon Profil</a>
+        <a href="logout.php"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a> 
+        <a href="../"><i class="fa-solid fa-house"></i> ATC</a>
+    </nav>
 
-<main>
-    <div class="welcome-message"> 
-        <h1>Bienvenue, <?= htmlspecialchars($user['username']) ?> !</h1>
-        <p>Gérez votre compte et explorez le contenu de la communauté.</p>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <img src="<?= htmlspecialchars($user['profile_image'] ?: 'img/profil.png') ?>" alt="Avatar" class="avatar">
+            <h1>
+                <span>Bienvenue,</span>
+                <?= htmlspecialchars($user['username']) ?>
+            </h1>
+        </div>
+        <div class="dashboard-cards">
+            <a href="media.php" class="hub-card">
+                <i class="fa-solid fa-photo-film hub-icon"></i>
+                <h3>Fil d'actualité</h3>
+                <p>Consultez les derniers posts, commentez et réagissez avec la communauté.</p>
+            </a>
+            <a href="profile.php" class="hub-card">
+                <i class="fa-solid fa-user-pen hub-icon"></i>
+                <h3>Gérer mon Profil</h3>
+                <p>Mettez à jour vos informations, mot de passe et photo de profil.</p>
+            </a>
+        </div>
     </div>
 
-    <div class="dashboard-cards">
-        <a href="profile.php" class="card">
-            <h2>Gérer mon profil</h2>
-            <p>Mettez à jour vos informations personnelles, votre mot de passe et votre photo de profil.</p>
-        </a>
+    <script>
+        // Le JavaScript pour le menu, autonome et sécurisé
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainMenu = document.getElementById('main-menu');
 
-        <a href="media.php" class="card" target="_blank" rel="noopener noreferrer">
-            <h2>Accéder au Fil d'actualité</h2>
-            <p>Consultez les derniers posts, commentez et réagissez avec la communauté.</p>
-        </a>
-    </div>
-</main>
-
+            if (menuToggle && mainMenu) {
+                const menuIcon = menuToggle.querySelector('i');
+                menuToggle.addEventListener('click', () => {
+                    const isActive = mainMenu.classList.toggle('active');
+                    menuIcon.className = isActive ? 'fa-solid fa-times' : 'fa-solid fa-bars';
+                });
+            }
+        });
+    </script>
 </body>
 </html>

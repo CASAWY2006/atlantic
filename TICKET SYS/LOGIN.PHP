@@ -154,6 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <link rel="icon" type="image/png" href="../IMG/AYV RE.png">
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -177,7 +178,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
         form { display: flex; flex-direction: column; }
         .input-group { margin-bottom: 1rem; }
         label { margin-bottom: 0.5rem; color: #555; }
-        input { width: 100%; padding: 0.75rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        input { width: 100%; padding: 0.75rem; border: 1px solid #ff0000ff; border-radius: 4px; box-sizing: border-box; }
         button { padding: 0.75rem; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
         button:hover { background-color: #0056b3; }
         .toggle-link { text-align: center; margin-top: 1rem; }
@@ -197,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
 
     .header-container {
         padding: 5px 15px;
-        display: flex;
+        display: flex;  
         justify-content: space-between;
         align-items: center;
     }
